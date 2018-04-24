@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.gifty.surveytool.Salesreps"
+    tools:showIn="@layout/app_bar_salesreps">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/pricelists"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="18dp"
+            android:text="PRICE LISTS" />
+
+        <TextView
+            android:id="@+id/wbrandname"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/pricelists"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="Brand:" />
+
+        <EditText
+            android:id="@+id/wbrand"
+            android:layout_below="@+id/wbrandname"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/wpacksize1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wbrand"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Pack size:" />
+
+        <EditText
+            android:id="@+id/wpacksize"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wpacksize1"
+            android:layout_marginLeft="16dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/wquantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wbrand"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/wpacksize1"
+            android:text="Quantity:" />
+
+        <EditText
+            android:id="@+id/wquantitycounted"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wquantity"
+            android:layout_marginLeft="140dp"
+            android:layout_toRightOf="@+id/wpacksize1"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:id="@+id/wbreakages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wpacksize"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Price:" />
+
+        <EditText
+            android:id="@+id/wbreakages_brand"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wbreakages"
+            android:layout_marginLeft="16dp"
+            android:text="$"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/savepricelistbtn"
+            android:layout_below="@+id/wbreakages_brand"
+            android:background="#322a29"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="#ff8c00"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAVE" />
+
+        <TextView
+            android:id="@+id/ordering"
+            android:layout_below="@id/savepricelistbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="18dp"
+            android:text="ORDER GENERATION" />
+
+        <TextView
+            android:id="@+id/ordernumber1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ordering"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="16dp"
+            android:text="Order Number:" />
+
+        <EditText
+            android:id="@+id/ordernumber"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/ordernumber1"
+            android:layout_height="match_parent"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/orderdate1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ordernumber"
+            android:layout_marginLeft="16dp"
+            android:text="Date:" />
+
+        <EditText
+            android:id="@+id/orderdate"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/orderdate1"
+            android:layout_height="match_parent"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:ems="10"
+            android:inputType="datetime" />
+
+        <TextView
+            android:id="@+id/wpacksize6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/orderdate"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Pack size:" />
+
+        <EditText
+            android:id="@+id/wpacksize7"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wpacksize6"
+            android:layout_marginLeft="16dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/wquantity6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/orderdate"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/wpacksize1"
+            android:text="Quantity:" />
+
+        <EditText
+            android:id="@+id/wquantitycounted7"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wquantity6"
+            android:layout_marginLeft="140dp"
+            android:layout_toRightOf="@+id/wpacksize1"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/orderbtn"
+            android:layout_below="@+id/wquantitycounted7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="#322a29"
+            android:layout_marginTop="10dp"
+            android:textColor="#ff8c00"
+            android:text="ORDER" />
+
+        <TextView
+            android:id="@+id/ordertaking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/orderbtn"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:textSize="18dp"
+            android:text="ORDER TAKING" />
+
+        <TextView
+            android:id="@+id/sbrandname"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/ordertaking"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="Brand:" />
+
+        <EditText
+            android:id="@+id/sbrand"
+            android:layout_below="@+id/sbrandname"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/pricetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sbrand"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Amount received:" />
+
+        <EditText
+            android:id="@+id/price"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pricetext"
+            android:layout_marginLeft="16dp"
+            android:text="$"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:id="@+id/spacksize1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/price"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Pack size:" />
+
+        <EditText
+            android:id="@+id/spacksize"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spacksize1"
+            android:layout_marginLeft="16dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/squantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/price"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/spacksize1"
+            android:text="Quantity:" />
+
+        <EditText
+            android:id="@+id/squantitycounted"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/squantity"
+            android:layout_marginLeft="140dp"
+            android:layout_toRightOf="@+id/spacksize1"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/takeorderbtn"
+            android:layout_below="@+id/spacksize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="#322a29"
+            android:layout_marginTop="10dp"
+            android:textColor="#ff8c00"
+            android:text="TAKE ORDER" />
+
+        <Button
+            android:id="@+id/picbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/takeorderbtn"
+            android:background="#ff8c00"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="#322a29"
+            android:text="Attach" />
+
+        <ImageView
+            android:id="@+id/shelfimage"
+            android:layout_width="60dp"
+            android:layout_below="@id/takeorderbtn"
+            android:layout_toRightOf="@+id/picbtn"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="60dp"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <Button
+            android:id="@+id/geolocate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/picbtn"
+            android:background="#003996"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="16dp"
+            android:textColor="#322a29"
+            android:text="GEO-LOCATE STORE" />
+
+        <Button
+            android:id="@+id/questionnairebtn"
+            android:layout_below="@+id/geolocate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="20dp"
+            android:background="#322a29"
+            android:layout_marginTop="20dp"
+            android:textColor="#ff8c00"
+            android:text="QUESTIONNAIRE" />
+
+
+    </RelativeLayout>
+</ScrollView>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.gifty.surveytool.Reports"
+    tools:showIn="@layout/activity_reports">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/stocks"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#322a29"
+            android:textColor="#ff8c00"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="STOCKS" />
+
+        <Button
+            android:id="@+id/onshelf"
+            android:layout_below="@+id/stocks"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#322a29"
+            android:textColor="#ff8c00"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="ON SHELF STATISTICS" />
+
+        <Button
+            android:id="@+id/order"
+            android:layout_below="@+id/onshelf"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#322a29"
+            android:textColor="#ff8c00"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="ORDER PLACEMENT" />
+
+    </RelativeLayout>
+</ScrollView>

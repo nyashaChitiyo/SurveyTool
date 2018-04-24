@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.gifty.surveytool.Merchandising"
+    tools:showIn="@layout/app_bar_merchandising">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/location_name"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:text="Location:" />
+
+        <Spinner
+            android:id="@+id/locations"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="160dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/project_name"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/location_name"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="Project name:" />
+
+        <EditText
+            android:id="@+id/etprojectname"
+            android:layout_below="@+id/project_name"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/outletname"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/etprojectname"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:text="Outlet:" />
+
+        <Spinner
+            android:id="@+id/outlet"
+            android:layout_below="@+id/etprojectname"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="160dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/management"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/outletname"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:text="Management:" />
+
+        <Spinner
+            android:id="@+id/branchmanagement"
+            android:layout_below="@+id/outletname"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="160dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/fullnametext"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/management"
+            android:layout_marginLeft="40dp"
+            android:layout_height="wrap_content"
+            android:text="Full name:" />
+
+        <EditText
+            android:id="@+id/etfullname"
+            android:layout_below="@+id/fullnametext"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="16dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/phonetext"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/etfullname"
+            android:layout_marginLeft="40dp"
+            android:layout_height="wrap_content"
+            android:text="Phone number:" />
+
+        <EditText
+            android:id="@+id/etphonenumber"
+            android:layout_below="@+id/phonetext"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="16dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="phone" />
+
+        <TextView
+            android:id="@+id/emailtext"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/etphonenumber"
+            android:layout_marginLeft="40dp"
+            android:layout_height="wrap_content"
+            android:text="Email:" />
+
+        <EditText
+            android:id="@+id/emailentry"
+            android:layout_below="@+id/emailtext"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="16dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:id="@+id/clienttext"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/emailentry"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="Client:" />
+
+        <EditText
+            android:id="@+id/client"
+            android:layout_below="@+id/clienttext"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/baname"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/client"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="BA fullname:" />
+
+        <EditText
+            android:id="@+id/etba"
+            android:layout_below="@+id/baname"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/savenext"
+            android:layout_below="@+id/etba"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="20dp"
+            android:background="#322a29"
+            android:layout_marginBottom="20dp"
+            android:textColor="#ff8c00"
+            android:layout_marginLeft="16dp"
+            android:layout_height="match_parent"
+            android:onClick="btnNext"
+            android:text="SAVE" />
+
+        <Button
+            android:id="@+id/nextbtn"
+            android:layout_below="@+id/savenext"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="20dp"
+            android:background="#322a29"
+            android:layout_marginBottom="20dp"
+            android:textColor="#ff8c00"
+            android:layout_marginLeft="16dp"
+            android:layout_height="match_parent"
+            android:onClick="btnNext"
+            android:text="NEXT" />
+    </RelativeLayout>
+</ScrollView>

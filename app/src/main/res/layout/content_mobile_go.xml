@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.gifty.surveytool.Surveymodules"
+    tools:showIn="@layout/activity_surveymodules">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_marginTop="2dp"
+            android:layout_width="260dp"
+            android:layout_height="160dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo" />
+
+        <Button
+            android:id="@+id/kycbtn"
+            android:layout_below="@+id/imageView2"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#322a29"
+            android:textColor="#ff8c00"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="SAINTS KYC" />
+
+        <Button
+            android:id="@+id/merchbtn"
+            android:layout_below="@+id/kycbtn"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#322a29"
+            android:textColor="#ff8c00"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="BRAND HEALTH CHECK" />
+
+        <Button
+            android:id="@+id/instorebtn"
+            android:layout_below="@+id/merchbtn"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#322a29"
+            android:textColor="#ff8c00"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="MARKET SURVEY" />
+
+        <Button
+            android:id="@+id/trademarketingbtn"
+            android:layout_below="@+id/instorebtn"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#322a29"
+            android:textColor="#ff8c00"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="USAGE + ATTITUDES" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/trademarketingbtn"
+            android:layout_marginTop="48dp"
+            android:textColor="#ff8c00"
+            android:layout_marginLeft="30dp"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:text="Saints Version 1.2" />
+    </RelativeLayout>
+</ScrollView>

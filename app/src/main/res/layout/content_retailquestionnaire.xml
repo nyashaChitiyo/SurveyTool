@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.gifty.surveytool.Retailquestionnaire"
+    tools:showIn="@layout/activity_retailquestionnaire">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/q1"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="1. Have you ever used this product?" />
+
+        <RadioButton
+            android:id="@+id/q1yes"
+            android:layout_below="@+id/q1"
+            android:layout_marginLeft="26dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes" />
+
+        <RadioButton
+            android:id="@+id/q1no"
+            android:layout_below="@+id/q1"
+            android:layout_toRightOf="@+id/q1yes"
+            android:layout_marginLeft="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No" />
+
+        <TextView
+            android:id="@+id/q2"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/q1yes"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="2. What is your opinion of it?" />
+
+        <RadioButton
+            android:id="@+id/q2yes"
+            android:layout_below="@+id/q2"
+            android:layout_marginLeft="26dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Good" />
+
+        <RadioButton
+            android:id="@+id/q2no"
+            android:layout_below="@+id/q2"
+            android:layout_toRightOf="@+id/q2yes"
+            android:layout_marginLeft="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bad" />
+
+        <TextView
+            android:id="@+id/q3"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/q2yes"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="3. Which product do you think is the best?" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_below="@+id/q2yes"
+            android:layout_marginRight="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/saveq"
+            android:layout_below="@+id/spinner"
+            android:background="#322a29"
+            android:textColor="#ff8c00"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="SAVE" />
+
+    </RelativeLayout>
+</ScrollView>

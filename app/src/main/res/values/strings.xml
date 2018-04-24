@@ -1,0 +1,216 @@
+<resources>
+    <string name="app_name">SurveyTool</string>
+    <string name="action_settings">Settings</string>
+    <string name="textview">TextView</string>
+    <string name="title_activity_surveymodules">KYC Survey Modules</string>
+    <string name="title_activity_kyc_registration">KYC Registration</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_merchandising">Saints Merchandising</string>
+    <string name="title_activity_retail">Saints Retail</string>
+    <string name="title_activity_sales">Sales + Distribution</string>
+    <string name="title_activity_questionaire">Questionaire</string>
+    <string name="title_activity_reports">Reports</string>
+    <string name="title_activity_stocks">Stocks</string>
+    <string name="title_activity_onshelf">On Shelf Statistics</string>
+    <string name="title_activity_orderplacement">Order placement</string>
+    <string name="title_activity_retailquestionnaire">Retail Questionnaire</string>
+    <string name="title_activity_salesreps">Sales Reps</string>
+    <string name="title_activity_salesquestionnaire">Sales Rep Questionnaire</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+    <string name="title_activity_account">My Account</string>
+    <string name="title_activity_help">Help</string>
+
+    <string-array name="religionarray">
+        <item>Christian</item>
+        <item>Islam</item>
+        <item>Non Religious</item>
+        <item>Hinduism</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="employment_status">
+        <item>Student</item>
+        <item>Employed</item>
+        <item>Unemployed</item>
+        <item>Retired</item>
+    </string-array>
+
+    <string-array name="geo_class">
+        <item>Low density</item>
+        <item>Medium density</item>
+        <item>High density</item>
+        <item>Village</item>
+        <item>Ward</item>
+        <item>District</item>
+        <item>Province</item>
+
+    </string-array>
+
+    <string-array name="education">
+        <item>O Level</item>
+        <item>A Level</item>
+        <item>Certificate</item>
+        <item>Diploma</item>
+        <item>Degree</item>
+        <item>PhD</item>
+        <item>Master</item>
+        <item>Doctorate</item>
+        <item>No education</item>
+
+    </string-array>
+
+    <string-array name="household">
+        <item>Owned</item>
+        <item>Rented</item>
+        <item>Company house</item>
+        <item>Relative's house</item>
+    </string-array>
+
+
+    <string-array name="load_question">
+        <item>Ecocash Survey</item>
+        <item>Food Survey</item>
+        <item>Supermarket Survey</item>
+        <item>Unilever Survey</item>
+    </string-array>
+
+    <string-array name="networks_question">
+        <item>Econet</item>
+        <item>Telecel</item>
+        <item>NetOne</item>
+        <item>Africom</item>
+    </string-array>
+
+    <string-array name="geolocations">
+        <item>Province</item>
+        <item>District</item>
+        <item>Ward</item>
+    </string-array>
+
+    <string-array name="outlet_name">
+        <item>Supermarket</item>
+        <item>Industry</item>
+        <item>Tuckshop</item>
+    </string-array>
+
+    <string-array name="management">
+        <item>Owner</item>
+        <item>Branch Manager</item>
+        <item>Regional Manager</item>
+        <item>Supervisor</item>
+    </string-array>
+    <string name="title_activity_maps">Geo-Locating</string>
+    <string name="title_activity_login">Saints Global</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_saints_login">Saints Global</string>
+    <string name="title_activity_mobile_go">MobileGo</string>
+
+    <string-array name="shoppers">
+        <item>0 - 100</item>
+        <item>100 - 500</item>
+        <item>500 - 100</item>
+    </string-array>
+
+    <string-array name="peaktimezone">
+        <item>CAT</item>
+        <item>CET</item>
+        <item>CVT</item>
+        <item>EAT</item>
+    </string-array>
+
+    <string-array name="carpark">
+        <item>0 - 20</item>
+        <item>20 - 60</item>
+        <item>60 - 100</item>
+        <item>100 - 500</item>
+    </string-array>
+
+
+
+</resources>

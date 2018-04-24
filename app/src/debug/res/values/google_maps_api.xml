@@ -1,0 +1,24 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=33:7F:B6:A1:9C:49:B4:90:5E:BC:8C:1E:84:D5:06:C1:99:83:75:43%3Bcom.example.gifty.surveytool
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    33:7F:B6:A1:9C:49:B4:90:5E:BC:8C:1E:84:D5:06:C1:99:83:75:43
+
+    SHA-1 certificate fingerprint:
+    33:7F:B6:A1:9C:49:B4:90:5E:BC:8C:1E:84:D5:06:C1:99:83:75:43
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDULjm2ddMtQkPCcsUhaq3uAH6BsijX4DM</string>
+</resources>

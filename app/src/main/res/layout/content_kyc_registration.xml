@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.gifty.surveytool.KycRegistration"
+    tools:showIn="@layout/app_bar_kyc_registration">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/firstnametext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:text="First name:" />
+
+        <EditText
+            android:id="@+id/etfirstname"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/firstnametext"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/lastnametext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etfirstname"
+            android:layout_marginLeft="15dp"
+            android:text="Last name:" />
+
+        <EditText
+            android:id="@+id/etlastname"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/lastnametext"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/dobtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etlastname"
+            android:layout_marginLeft="15dp"
+            android:text="D.O.B" />
+
+        <EditText
+            android:id="@+id/edob"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/dobtext"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="date" />
+
+        <TextView
+            android:id="@+id/gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edob"
+            android:layout_marginLeft="15dp"
+            android:text="Gender" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/gender"
+            android:id="@+id/rgroup">
+
+        <RadioButton
+            android:id="@+id/male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gender"
+            android:layout_marginLeft="26dp"
+            android:text="Male" />
+
+        <RadioButton
+            android:id="@+id/female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/gender"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/male"
+            android:text="Female" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/personalphone1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rgroup"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:text="Personal phone number:" />
+
+        <EditText
+            android:id="@+id/etpersonalphone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/personalphone1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="phone" />
+
+        <TextView
+            android:id="@+id/homephone1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etpersonalphone"
+            android:layout_marginLeft="15dp"
+            android:text="Home phone number:" />
+
+        <EditText
+            android:id="@+id/ethomephone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/homephone1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="phone" />
+
+        <TextView
+            android:id="@+id/workphone1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ethomephone"
+            android:layout_marginLeft="15dp"
+            android:text="Work phone number:" />
+
+        <EditText
+            android:id="@+id/etworkphone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/workphone1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="phone" />
+
+        <TextView
+            android:id="@+id/emailtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etworkphone"
+            android:layout_marginLeft="15dp"
+            android:text="Email:" />
+
+        <EditText
+            android:id="@+id/etemail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/emailtext"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:id="@+id/fb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etemail"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Facebook:" />
+
+        <EditText
+            android:id="@+id/etfacebook"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fb"
+            android:layout_marginLeft="16dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/tr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etemail"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/fb"
+            android:text="Twitter:" />
+
+        <EditText
+            android:id="@+id/ettwitter"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tr"
+            android:layout_marginLeft="24dp"
+            android:layout_toRightOf="@+id/etfacebook"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/wa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etfacebook"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="WhatsApp" />
+
+        <EditText
+            android:id="@+id/etwhatsapp"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wa"
+            android:layout_marginLeft="16dp"
+            android:ems="10"
+            android:inputType="phone" />
+
+        <TextView
+            android:id="@+id/insta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etfacebook"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/wa"
+            android:text="Instagram:" />
+
+        <EditText
+            android:id="@+id/etinstagram"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/insta"
+            android:layout_marginLeft="24dp"
+            android:layout_toRightOf="@+id/etwhatsapp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/homeaddress1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etinstagram"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:text="Home Address:" />
+
+        <EditText
+            android:id="@+id/ethomeaddress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/homeaddress1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/workaddress1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ethomeaddress"
+            android:layout_marginLeft="15dp"
+            android:text="Work Address:" />
+
+        <EditText
+            android:id="@+id/etworkaddress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/workaddress1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/idnumber1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etworkaddress"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:text="ID number:" />
+
+        <EditText
+            android:id="@+id/etidnumber"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/idnumber1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/passport1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etidnumber"
+            android:layout_marginLeft="15dp"
+            android:text="Passport number:" />
+
+        <EditText
+            android:id="@+id/etpassport"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/passport1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/driverlicense1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etpassport"
+            android:layout_marginLeft="15dp"
+            android:text="Driver's license:" />
+
+        <EditText
+            android:id="@+id/etdriverlicense"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/driverlicense1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/nationality1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etdriverlicense"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:text="Nationality:" />
+
+        <EditText
+            android:id="@+id/etnationality"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/nationality1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/religion1"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etnationality"
+            android:layout_marginLeft="15dp"
+            android:text="Religion:" />
+
+        <Spinner
+            android:id="@+id/religion"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="160dp"
+            android:layout_below="@id/etnationality"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/employment"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/religion1"
+            android:layout_marginLeft="15dp"
+            android:text="Employment Status:" />
+
+        <Spinner
+            android:id="@+id/employmentstatus"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="160dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/religion1"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/hobbies1"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/employment"
+            android:layout_marginLeft="15dp"
+            android:text="Interested hobies:" />
+
+        <EditText
+            android:id="@+id/ethobies"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/hobbies1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/hobbies2"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ethobies"
+            android:layout_marginLeft="15dp"
+            android:text="Favourable hobies:" />
+
+        <EditText
+            android:id="@+id/etfhobies"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/hobbies2"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/geo-class"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etfhobies"
+            android:layout_marginLeft="15dp"
+            android:text="Geo-Classification:" />
+
+        <Spinner
+            android:id="@+id/geoclass"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="160dp"
+            android:layout_marginRight="60dp"
+            android:layout_below="@id/etfhobies"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/visitedmalls"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/geo-class"
+            android:layout_marginLeft="15dp"
+            android:text="Frequently visited malls:" />
+
+        <EditText
+            android:id="@+id/etfvisitedmalls"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/visitedmalls"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/leisure"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etfvisitedmalls"
+            android:layout_marginLeft="15dp"
+            android:text="Leisure time:" />
+
+        <EditText
+            android:id="@+id/etleisuretime"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/leisure"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/education"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etleisuretime"
+            android:layout_marginLeft="15dp"
+            android:text="Education level:" />
+
+        <Spinner
+            android:id="@+id/edulevel"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="160dp"
+            android:layout_marginRight="60dp"
+            android:layout_below="@id/etleisuretime"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/personal"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:textSize="18dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/education"
+            android:layout_marginLeft="15dp"
+            android:text="PERSONAL DETAILS" />
+
+        <TextView
+            android:id="@+id/children"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/personal"
+            android:layout_marginLeft="15dp"
+            android:text="Number of children:" />
+
+        <EditText
+            android:id="@+id/etnumberofchildren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/children"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/males1"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etnumberofchildren"
+            android:layout_marginLeft="15dp"
+            android:text="Number of male children:" />
+
+        <EditText
+            android:id="@+id/etmales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/males1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/females1"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etmales"
+            android:layout_marginLeft="15dp"
+            android:text="Number of female children:" />
+
+        <EditText
+            android:id="@+id/etfemales"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/females1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/inhouse"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etfemales"
+            android:layout_marginLeft="15dp"
+            android:text="How many children live in house?:" />
+
+        <EditText
+            android:id="@+id/etchildreninhouse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/inhouse"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/under18"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etchildreninhouse"
+            android:layout_marginLeft="15dp"
+            android:text="How many children under 18?:" />
+
+        <EditText
+            android:id="@+id/etchildrenunder18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/under18"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/household"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etchildrenunder18"
+            android:layout_marginLeft="15dp"
+            android:text="Ownership of household:" />
+
+        <Spinner
+            android:id="@+id/householdownership"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="160dp"
+            android:layout_marginRight="60dp"
+            android:layout_below="@id/etchildrenunder18"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/rentcost1"
+            android:layout_width="match_parent"
+            android:layout_marginTop="26dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/household"
+            android:layout_marginLeft="15dp"
+            android:text="Rent cost:" />
+
+        <EditText
+            android:id="@+id/etrentcost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rentcost1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="$"/>
+
+        <TextView
+            android:id="@+id/utilities1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etrentcost"
+            android:layout_marginLeft="15dp"
+            android:text="Utilities:" />
+
+        <EditText
+            android:id="@+id/etutilities"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/utilities1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="$"/>
+
+        <TextView
+            android:id="@+id/foodgrocery1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etutilities"
+            android:layout_marginLeft="15dp"
+            android:text="Food and Groceries:" />
+
+        <EditText
+            android:id="@+id/etfoodgrocery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/foodgrocery1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="$"/>
+
+        <TextView
+            android:id="@+id/educationcost1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etfoodgrocery"
+            android:layout_marginLeft="15dp"
+            android:text="Education cost:" />
+
+        <EditText
+            android:id="@+id/eteducationcost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/educationcost1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="$"/>
+
+        <TextView
+            android:id="@+id/transport1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/eteducationcost"
+            android:layout_marginLeft="15dp"
+            android:text="Transport cost:" />
+
+        <EditText
+            android:id="@+id/ettransport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/transport1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="number"
+            android:text="$"/>
+
+        <TextView
+            android:id="@+id/savings1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ettransport"
+            android:layout_marginLeft="15dp"
+            android:text="Savings:" />
+
+        <EditText
+            android:id="@+id/etsavings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/savings1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/assets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etsavings"
+            android:layout_marginTop="20dp"
+            android:textSize="18dp"
+            android:layout_marginLeft="15dp"
+            android:text="Ownership of Assets" />
+
+        <TextView
+            android:id="@+id/houses1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/assets"
+            android:layout_marginLeft="15dp"
+            android:text="House(s):" />
+
+        <EditText
+            android:id="@+id/ethouses"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/houses1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/furniture1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ethouses"
+            android:layout_marginLeft="15dp"
+            android:text="Furniture:" />
+
+        <EditText
+            android:id="@+id/etfurniture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/furniture1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/vehicle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etfurniture"
+            android:layout_marginLeft="15dp"
+            android:text="Vehicle(s):" />
+
+        <EditText
+            android:id="@+id/etvehicle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/vehicle1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/land1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etvehicle"
+            android:layout_marginLeft="15dp"
+            android:text="Land:" />
+
+        <EditText
+            android:id="@+id/etland"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/land1"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:ems="10"
+            android:inputType="text" />
+
+
+        <Button
+            android:id="@+id/kycpicbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etland"
+            android:background="#ff8c00"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="#322a29"
+            android:text="Attach" />
+
+        <ImageView
+            android:id="@+id/kycpic"
+            android:layout_width="60dp"
+            android:layout_below="@id/etland"
+            android:layout_toRightOf="@+id/kycpicbtn"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="60dp"
+            app:srcCompat="@mipmap/ic_launcher"/>
+
+
+
+        <Button
+            android:id="@+id/nextbtn"
+            android:layout_below="@+id/kycpic"
+            android:background="#322a29"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#ff8c00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="savekyc"
+            android:text="SAVE DATA" />
+
+        <Button
+            android:id="@+id/kycnxtbtn"
+            android:layout_below="@+id/nextbtn"
+            android:background="#322a29"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#ff8c00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="questionnaire" />
+
+
+    </RelativeLayout>
+</ScrollView>

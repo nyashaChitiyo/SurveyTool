@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.gifty.surveytool.Questionaire"
+    tools:showIn="@layout/app_bar_questionaire">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/loadquestionaire"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="14dp"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="Load Questionnaire" />
+
+        <Spinner
+            android:id="@+id/questionaire"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="160dp"
+            android:layout_marginRight="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/load"
+            android:layout_below="@+id/loadquestionaire"
+            android:background="#322a29"
+            android:textColor="#ff8c00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="Load" />
+
+        <EditText
+            android:id="@+id/q1"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/load"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="1. Is this your first mobile number?" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/q1"
+            android:id="@+id/radiogroupq1">
+
+        <RadioButton
+            android:layout_marginLeft="26dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes" />
+
+        <RadioButton
+            android:layout_marginLeft="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No" />
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/q2"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/radiogroupq1"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="2. Are you happy with Econet services?" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_below="@+id/q2"
+            android:layout_height="wrap_content"
+            android:id="@+id/rgq2">
+
+        <RadioButton
+            android:layout_marginLeft="26dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yes" />
+
+        <RadioButton
+            android:layout_toRightOf="@+id/q2yes"
+            android:layout_marginLeft="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No" />
+
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/q3"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/rgq2"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="3. Which other networks are you on?" />
+
+        <Spinner
+            android:id="@+id/networks"
+            android:layout_below="@+id/q3"
+            android:layout_marginLeft="160dp"
+            android:layout_marginRight="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/saveq"
+            android:layout_below="@+id/networks"
+            android:background="#322a29"
+            android:textColor="#ff8c00"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="SAVE" />
+    </RelativeLayout>
+</ScrollView>

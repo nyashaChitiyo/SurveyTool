@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.gifty.surveytool.Stocks"
+    tools:showIn="@layout/app_bar_stocks">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/openingstockwarehouse"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="18dp"
+            android:layout_height="match_parent"
+            android:text="Opening Stock (Warehouse floor)" />
+
+        <TextView
+            android:id="@+id/wbrandname"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/openingstockwarehouse"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="Brand:" />
+
+        <EditText
+            android:id="@+id/wbrand"
+            android:layout_below="@+id/wbrandname"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/wpacksize1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wbrand"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Pack size:" />
+
+        <EditText
+            android:id="@+id/wpacksize"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wpacksize1"
+            android:layout_marginLeft="16dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/wquantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wbrand"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/wpacksize1"
+            android:text="Quantity:" />
+
+        <EditText
+            android:id="@+id/wquantitycounted"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wquantity"
+            android:layout_marginLeft="140dp"
+            android:layout_toRightOf="@+id/wpacksize1"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:id="@+id/wbreakages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wpacksize"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Breakages:" />
+
+        <EditText
+            android:id="@+id/wbreakages_brand"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wbreakages"
+            android:layout_marginLeft="16dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/wbreakages_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wpacksize"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/breakages"
+            android:text="Qty of breakages:" />
+
+        <EditText
+            android:id="@+id/wquantity_breakages"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wbreakages_text"
+            android:layout_marginLeft="140dp"
+            android:layout_toRightOf="@+id/wbreakages"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/wosbtn"
+            android:layout_below="@+id/wbreakages_brand"
+            android:background="#322a29"
+            android:textColor="#ff8c00"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="save_warehouse"
+            android:text="SAVE" />
+
+
+        <TextView
+            android:id="@+id/openingstock"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/wosbtn"
+            android:layout_marginLeft="10dp"
+            android:textSize="18dp"
+            android:layout_height="match_parent"
+            android:text="Opening Stock (shop floor)" />
+
+        <TextView
+            android:id="@+id/brandname"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/openingstock"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="Brand:" />
+
+        <EditText
+            android:id="@+id/brand"
+            android:layout_below="@+id/brandname"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/packsize1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/brand"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Pack size:" />
+
+        <EditText
+            android:id="@+id/packsize"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/packsize1"
+            android:layout_marginLeft="16dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/brand"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/packsize1"
+            android:text="Quantity:" />
+
+        <EditText
+            android:id="@+id/quantitycounted"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/quantity"
+            android:layout_marginLeft="140dp"
+            android:layout_toRightOf="@+id/packsize1"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:id="@+id/breakages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/packsize"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Breakages:" />
+
+        <EditText
+            android:id="@+id/breakages_brand"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/breakages"
+            android:layout_marginLeft="16dp"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/breakages_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/packsize"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/breakages"
+            android:text="Qty of breakages:" />
+
+        <EditText
+            android:id="@+id/quantity_breakages"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/breakages_text"
+            android:layout_marginLeft="140dp"
+            android:layout_toRightOf="@+id/breakages"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/osbtn"
+            android:layout_below="@+id/breakages_brand"
+            android:background="#322a29"
+            android:textColor="#ff8c00"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="saveos"
+            android:text="SAVE" />
+
+
+
+        <TextView
+            android:id="@+id/closingstock"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/osbtn"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="18dp"
+            android:layout_height="match_parent"
+            android:text="Closing Stock (shop floor)" />
+
+        <TextView
+            android:id="@+id/cbrandname"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/closingstock"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="Brand:" />
+
+        <EditText
+            android:id="@+id/cbrand"
+            android:layout_below="@+id/cbrandname"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/cpacksize1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbrand"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Pack size:" />
+
+        <EditText
+            android:id="@+id/cpacksize"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cpacksize1"
+            android:layout_marginLeft="16dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/cquantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cbrand"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@+id/cpacksize1"
+            android:text="Quantity:" />
+
+        <EditText
+            android:id="@+id/cquantitycounted"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cquantity"
+            android:layout_marginLeft="140dp"
+            android:layout_toRightOf="@+id/cpacksize1"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <Button
+            android:id="@+id/csbtn"
+            android:layout_below="@+id/cpacksize"
+            android:background="#322a29"
+            android:textColor="#ff8c00"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="savecs"
+            android:text="SAVE" />
+
+        <TextView
+            android:id="@+id/runningrates"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/csbtn"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="18dp"
+            android:layout_height="match_parent"
+            android:text="Daily Running Rates" />
+
+        <TextView
+            android:id="@+id/salestext"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/runningrates"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="Calculated sales:" />
+
+        <EditText
+            android:id="@+id/sales"
+            android:layout_below="@+id/salestext"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/warehousecs"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/sales"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="18dp"
+            android:layout_height="match_parent"
+            android:text="Closing Stock (Warehouse floor)" />
+
+        <TextView
+            android:id="@+id/warehouse"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/warehousecs"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="Warehouse closing stock:" />
+
+        <EditText
+            android:id="@+id/cswarehouse"
+            android:layout_below="@+id/warehouse"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_height="match_parent"
+            android:ems="10"
+            android:inputType="text" />
+
+
+
+
+    </RelativeLayout>
+</ScrollView>
