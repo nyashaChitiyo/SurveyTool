@@ -2,10 +2,13 @@ package com.example.gifty.surveytool;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,17 +27,27 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.gifty.surveytool.pojo.KycRegistrationPojo;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static android.os.Build.VERSION_CODES.O;
 
 public class KycRegistration extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    private static final String TAG = "KycRegistration";
+    String firebase_name;
     Button kycpicbtn, kycnxtbtn;
     ImageView kycpic;
     EditText firstname, lastname, dob, personalphone, homephone, workphone, email, facebook,
@@ -43,7 +56,7 @@ public class KycRegistration extends AppCompatActivity
             childreninhouse, childrenunder18, rentcost, utilities, foodgrocery, educationcost, transport,
             savings, houses, furniture, vehicle, land;
 
-
+    private FirebaseUser user;
     Spinner religion, employmentstatus, geoclass, edulevel, householdownership;
     ArrayAdapter<CharSequence> adapter1, adapter2, adapter3,adapter4, adapter6;
 
@@ -55,6 +68,8 @@ public class KycRegistration extends AppCompatActivity
         setContentView(R.layout.activity_kyc_registration);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         kycpicbtn = (Button)findViewById(R.id.kycpicbtn);
         kycnxtbtn = (Button)findViewById(R.id.kycnxtbtn);
@@ -201,79 +216,94 @@ public class KycRegistration extends AppCompatActivity
     //onclick *savekyc* button
     public void savekyc (View view){
 
-        Toast.makeText(getApplicationContext(), "Saving data...", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Saving data...", Toast.LENGTH_LONG).show();
 
-        String str_firstname = firstname.getText().toString();
-        String str_lastname = lastname.getText().toString();
-        String str_dob = dob.getText().toString();
-        String str_personalphone = personalphone.getText().toString();
-        String str_homephone = homephone.getText().toString();
-        String str_workphone = workphone.getText().toString();
-        String str_email = email.getText().toString();
-        String str_facebook = facebook.getText().toString();
-        String str_twitter = twitter.getText().toString();
-        String str_whatsapp = whatsapp.getText().toString();
-        String str_instagram = instagram.getText().toString();
-        String str_homeaddress = homeaddress.getText().toString();
-        String str_workaddress = workaddress.getText().toString();
-        String str_idnumber = idnumber.getText().toString();
-        String str_passport = passport.getText().toString();
-        String str_driverlicense = driverlicense.getText().toString();
-        String str_nationality = nationality.getText().toString();
-        String str_hobies = hobies.getText().toString();
-        String str_fhobies = fhobies.getText().toString();
-        String str_fvisitedmalls = fvisitedmalls.getText().toString();
-        String str_leisuretime = leisuretime.getText().toString();
-        String str_numberofchildren = numberofchildren.getText().toString();
-        String str_males = males.getText().toString();
-        String str_females = females.getText().toString();
-        String str_childreninhouse = childreninhouse.getText().toString();
-        String str_childrenunder18 = childrenunder18.getText().toString();
-        String str_rentcost = rentcost.getText().toString();
-        String str_utilities = utilities.getText().toString();
-        String str_foodgrocery = foodgrocery.getText().toString();
-        String str_educationcost = educationcost.getText().toString();
-        String str_transport = transport.getText().toString();
-        String str_savings = savings.getText().toString();
-        String str_houses = houses.getText().toString();
-        String str_vehicle = vehicle.getText().toString();
-        String str_furniture = furniture.getText().toString();
-        String str_land = land.getText().toString();
-        String str_religion = religion.getSelectedItem().toString();
-        String str_employmentstatus = employmentstatus.getSelectedItem().toString();
-        String str_geoclass = geoclass.getSelectedItem().toString();
-        String str_edulevel = edulevel.getSelectedItem().toString();
-        String str_householdownership = householdownership.getSelectedItem().toString();
-
-
-
-        String type = "kycdata";
+            final String str_firstname = firstname.getText().toString();
+            final String str_lastname = lastname.getText().toString();
+            final String str_dob = dob.getText().toString();
+        final String str_personalphone = personalphone.getText().toString();
+        final String str_homephone = homephone.getText().toString();
+        final String str_workphone = workphone.getText().toString();
+        final String str_email = email.getText().toString();
+        final String str_facebook = facebook.getText().toString();
+        final String str_twitter = twitter.getText().toString();
+        final String str_whatsapp = whatsapp.getText().toString();
+        final String str_instagram = instagram.getText().toString();
+        final String str_homeaddress = homeaddress.getText().toString();
+        final String str_workaddress = workaddress.getText().toString();
+        final String str_idnumber = idnumber.getText().toString();
+        final String str_passport = passport.getText().toString();
+        final String str_driverlicense = driverlicense.getText().toString();
+        final String str_nationality = nationality.getText().toString();
+        final String str_hobies = hobies.getText().toString();
+        final String str_fhobies = fhobies.getText().toString();
+        final String str_fvisitedmalls = fvisitedmalls.getText().toString();
+        final String str_leisuretime = leisuretime.getText().toString();
+        final String str_numberofchildren = numberofchildren.getText().toString();
+        final String str_males = males.getText().toString();
+        final String str_females = females.getText().toString();
+        final String str_childreninhouse = childreninhouse.getText().toString();
+        final String str_childrenunder18 = childrenunder18.getText().toString();
+        final String str_rentcost = rentcost.getText().toString();
+        final String str_utilities = utilities.getText().toString();
+        final String str_foodgrocery = foodgrocery.getText().toString();
+        final String str_educationcost = educationcost.getText().toString();
+        final String str_transport = transport.getText().toString();
+        final String str_savings = savings.getText().toString();
+        final String str_houses = houses.getText().toString();
+        final String str_vehicle = vehicle.getText().toString();
+        final String str_furniture = furniture.getText().toString();
+        final String str_land = land.getText().toString();
+        final String str_religion = religion.getSelectedItem().toString();
+        final String str_employmentstatus = employmentstatus.getSelectedItem().toString();
+        final String str_geoclass = geoclass.getSelectedItem().toString();
+        final String str_edulevel = edulevel.getSelectedItem().toString();
+        final String str_householdownership = householdownership.getSelectedItem().toString();
+        final String email = user.getEmail();
 
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("user");
-        KycRegistrationPojo pojo = new KycRegistrationPojo(str_firstname, str_lastname, str_dob, str_personalphone, str_homephone,
-                str_workphone, str_email, str_facebook, str_twitter, str_whatsapp,
-                str_instagram, str_homeaddress, str_workaddress, str_idnumber, str_passport, str_driverlicense,
-                str_nationality, str_hobies, str_fhobies, str_fvisitedmalls,
-                str_leisuretime, str_numberofchildren, str_males, str_females, str_childreninhouse,
-                str_childrenunder18, str_rentcost, str_utilities, str_foodgrocery, str_educationcost,
-                str_transport, str_savings, str_houses, str_vehicle, str_furniture, str_land,str_religion,str_employmentstatus,str_geoclass,str_edulevel,str_householdownership);
-        String idnumber = ref.push().getKey();
+            String type = "kycdata";
 
-        if(str_idnumber == null || (str_idnumber.trim()).length() <1)
-           ref.child(idnumber).setValue(pojo);
-        else
-            ref.child(str_idnumber).setValue(pojo);
 
-        /*BackendWork backendWork = new BackendWork(this);
-        backendWork.execute(type, str_firstname, str_lastname, str_dob, str_personalphone, str_homephone,
-                str_workphone, str_email, str_facebook, str_twitter, str_whatsapp,
-                str_instagram, str_homeaddress, str_workaddress, str_idnumber, str_passport, str_driverlicense,
-                str_nationality, str_hobies, str_fhobies, str_fvisitedmalls,
-                str_leisuretime, str_numberofchildren, str_males, str_females, str_childreninhouse,
-                str_childrenunder18, str_rentcost, str_utilities, str_foodgrocery, str_educationcost,
-                str_transport, str_savings, str_houses, str_vehicle, str_furniture, str_land);*/
+            if (firebase_name != null) {
+                // Name, email address, and profile photo Url
+                firebase_name = user.getDisplayName();
+            }
+
+            else {
+                String s = user.getEmail();
+                final String[] firebase_username = s.split("@");
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(firebase_username[0])
+                        .build();
+
+                user.updateProfile(profileUpdates)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    //Log.d(TAG, "User profile updated.");
+                                    //Toast.makeText(KycRegistration.this,user.getDisplayName(),Toast.LENGTH_LONG).show();
+
+                                    KycRegistrationPojo pojo = new KycRegistrationPojo(str_firstname, str_lastname, str_dob, str_personalphone, str_homephone,
+                                            str_workphone, str_email, str_facebook, str_twitter, str_whatsapp,
+                                            str_instagram, str_homeaddress, str_workaddress, str_idnumber, str_passport, str_driverlicense,
+                                            str_nationality, str_hobies, str_fhobies, str_fvisitedmalls,
+                                            str_leisuretime, str_numberofchildren, str_males, str_females, str_childreninhouse,
+                                            str_childrenunder18, str_rentcost, str_utilities, str_foodgrocery, str_educationcost,
+                                            str_transport, str_savings, str_houses, str_vehicle, str_furniture, str_land, str_religion, str_employmentstatus, str_geoclass, str_edulevel, str_householdownership, email);
+
+                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    DatabaseReference ref = database.getReference("Brand Ambassador");
+
+                                    //Get online user
+
+                                    //firebase_name = user.getDisplayName();
+                                    ref.child(firebase_username[0]).child("Know Your Customer").setValue(pojo);
+                                }
+                            }
+                        });
+            }
     }
 
     @Override
