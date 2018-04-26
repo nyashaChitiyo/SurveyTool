@@ -282,8 +282,6 @@ public class KycRegistration extends AppCompatActivity
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    //Log.d(TAG, "User profile updated.");
-                                    //Toast.makeText(KycRegistration.this,user.getDisplayName(),Toast.LENGTH_LONG).show();
 
                                     KycRegistrationPojo pojo = new KycRegistrationPojo(str_firstname, str_lastname, str_dob, str_personalphone, str_homephone,
                                             str_workphone, str_email, str_facebook, str_twitter, str_whatsapp,
@@ -299,7 +297,7 @@ public class KycRegistration extends AppCompatActivity
                                     //Get online user
 
                                     //firebase_name = user.getDisplayName();
-                                    ref.child(firebase_username[0]).child("Know Your Customer").setValue(pojo);
+                                    ref.child(firebase_username[0]).child("Know Your Customer").child(str_firstname+" "+str_lastname).setValue(pojo);
                                 }
                             }
                         });

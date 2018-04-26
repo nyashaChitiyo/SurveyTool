@@ -42,9 +42,9 @@ public class KycRegistrationPojo {
     String geoclass;
     String edulevel;
     String householdownership;
-    String user;
+    String agent;
 
-    public KycRegistrationPojo(String firstname, String lastname, String dob, String personalphone, String homephone, String workphone, String email, String facebook, String twitter, String whatsapp, String instagram, String homeaddress, String workaddress, String idnumber, String passport, String driverlicense, String nationality, String hobies, String fhobies, String fvisitedmalls, String leisuretime, String numberofchildren, String males, String females, String childreninhouse, String childrenunder18, String rentcost, String utilities, String foodgrocery, String educationcost, String transport, String savings, String houses, String furniture, String vehicle, String land, String religion, String employmentstatus, String geoclass, String edulevel, String householdownership,String user) {
+    public KycRegistrationPojo(String firstname, String lastname, String dob, String personalphone, String homephone, String workphone, String email, String facebook, String twitter, String whatsapp, String instagram, String homeaddress, String workaddress, String idnumber, String passport, String driverlicense, String nationality, String hobies, String fhobies, String fvisitedmalls, String leisuretime, String numberofchildren, String males, String females, String childreninhouse, String childrenunder18, String rentcost, String utilities, String foodgrocery, String educationcost, String transport, String savings, String houses, String furniture, String vehicle, String land, String religion, String employmentstatus, String geoclass, String edulevel, String householdownership,String agent) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.dob = dob;
@@ -86,15 +86,15 @@ public class KycRegistrationPojo {
         this.geoclass = geoclass;
         this.edulevel = edulevel;
         this.householdownership = householdownership;
-        this.user = user;
+        this.agent = agent;
     }
 
-    public String getUser() {
-        return user;
+    public String getAgent() {
+        return agent;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setAgent(String agent) {
+        this.agent = agent;
     }
 
     public String getFirstname() {

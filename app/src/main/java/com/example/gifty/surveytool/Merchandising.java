@@ -2,6 +2,7 @@ package com.example.gifty.surveytool;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -17,9 +18,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.gifty.surveytool.pojo.MerchandisingPojo;
 import com.example.gifty.surveytool.pojo.WarehouseStock;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -60,9 +67,64 @@ public class Merchandising extends AppCompatActivity
 
 
         savenext.setOnClickListener(new View.OnClickListener() {
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference("Brand Ambassador");
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String firebase_name = user.getDisplayName();
             @Override
             public void onClick(View v) {
-                String str_projectname = projectname.getText().toString();
+                Toast.makeText(Merchandising.this,firebase_name,Toast.LENGTH_LONG).show();
+                String s = user.getEmail();
+                final String[] firebase_username = s.split("@");
+                if (firebase_name != null) {
+                    Toast.makeText(Merchandising.this,firebase_username[0],Toast.LENGTH_LONG).show();
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(firebase_username[0])
+                            .build();
+
+                    user.updateProfile(profileUpdates)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        String str_projectname = projectname.getText().toString();
+                                        String str_fullname = fullname.getText().toString();
+                                        String str_phonenumber = phonenumber.getText().toString();
+                                        String str_email = email.getText().toString();
+                                        String str_client = client.getText().toString();
+                                        String str_location = locations.getSelectedItem().toString();
+                                        String str_outlet = outlet.getSelectedItem().toString();
+                                        String str_bmngmnt = branchmanagement.getSelectedItem().toString();
+                                        String str_ba = brandAmbassador.getText().toString();
+
+                                        project_name = str_projectname;
+                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                        DatabaseReference ref = database.getReference("Brand Ambassador");
+
+                                        WarehouseStock warehouseStock = new WarehouseStock("nyasha","nyasha","nyasha","nyasha","nyasha");
+                                        MerchandisingPojo pojo = new MerchandisingPojo(warehouseStock,str_projectname,str_fullname,str_phonenumber,str_email,str_client,str_ba,str_location,str_outlet,str_bmngmnt);
+
+                                        ref.child(firebase_username[0]).child("Merchandising").child(str_projectname).setValue(pojo);
+
+                                        Intent savenextbtn = new Intent(getApplicationContext(), Reports.class);
+                                        startActivity(savenextbtn);                                }
+                                }
+                            });
+
+                }
+
+                else {
+                    Toast.makeText(Merchandising.this,firebase_username[0],Toast.LENGTH_LONG).show();
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(firebase_username[0])
+                            .build();
+
+                    user.updateProfile(profileUpdates)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                       @Override
+                                                       public void onComplete(@NonNull Task<Void> task) {
+                                                           if (task.isSuccessful()) {
+                                                               String str_projectname = projectname.getText().toString();
                 String str_fullname = fullname.getText().toString();
                 String str_phonenumber = phonenumber.getText().toString();
                 String str_email = email.getText().toString();
@@ -74,15 +136,18 @@ public class Merchandising extends AppCompatActivity
 
                 project_name = str_projectname;
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference ref = database.getReference("merchandising");
+                DatabaseReference ref = database.getReference("Brand Ambassador");
 
                 WarehouseStock warehouseStock = new WarehouseStock("nyasha","nyasha","nyasha","nyasha","nyasha");
                 MerchandisingPojo pojo = new MerchandisingPojo(warehouseStock,str_projectname,str_fullname,str_phonenumber,str_email,str_client,str_ba,str_location,str_outlet,str_bmngmnt);
 
-                ref.child(str_projectname).setValue(pojo);
+                ref.child(firebase_username[0]).child("Merchandising").setValue(pojo);
 
                 Intent savenextbtn = new Intent(getApplicationContext(), Reports.class);
-                startActivity(savenextbtn);
+                startActivity(savenextbtn);                                }
+                                                       }
+                            });
+                }
             }
         });
 

@@ -2,6 +2,7 @@ package com.example.gifty.surveytool;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -17,8 +18,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.gifty.surveytool.pojo.ShopFloorClosingStock;
 import com.example.gifty.surveytool.pojo.ShopFloorStock;
 import com.example.gifty.surveytool.pojo.WarehouseStock;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,16 +33,18 @@ public class Stocks extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     //Button wosbtn, osbtn, csbtn;
+    private FirebaseUser user;
+    String firebase_name;
     EditText et_wbrand, et_wpacksize, et_wquantitycounted, et_wbreakages_brand, et_wquantity_breakages,
     et_brand, et_packsize, et_quantitycounted, et_breakages_brand, et_quantity_breakages, et_cbrand,
     et_cpacksize, et_cquantitycounted, et_sales, et_cswarehouse;
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stocks);
+        user = FirebaseAuth.getInstance().getCurrentUser();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -75,26 +84,49 @@ public class Stocks extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    //Saving warehouse data
+    //Saving opening stock warehouse data
     public void save_warehouse(View view) {
 
-        String str_et_wbrand = et_wbrand.getText().toString();
-        String str_et_wpacksize = et_wpacksize.getText().toString();
-        String str_et_wquantitycounted = et_wquantitycounted.getText().toString();
-        String str_et_wbreakages_brand = et_wbreakages_brand.getText().toString();
-        String str_et_wquantity_breakages = et_wquantity_breakages.getText().toString();
+        final String str_et_wbrand = et_wbrand.getText().toString();
+        final String str_et_wpacksize = et_wpacksize.getText().toString();
+        final String str_et_wquantitycounted = et_wquantitycounted.getText().toString();
+        final String str_et_wbreakages_brand = et_wbreakages_brand.getText().toString();
+        final String str_et_wquantity_breakages = et_wquantity_breakages.getText().toString();
 
-        String type = "openStock_warehouse";
+        if (firebase_name != null) {
+            // Name, email address, and profile photo Url
+            firebase_name = user.getDisplayName();
+            WarehouseStock warehouseStock = new WarehouseStock(str_et_wbrand,str_et_wpacksize,str_et_wquantitycounted,str_et_wbreakages_brand,str_et_wquantity_breakages);
 
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference("Brand Ambassador");
+            ref.child(firebase_name).child("Merchandising").child(Merchandising.project_name).child("Warehouse Opening stock").setValue(warehouseStock);
+        }
+
+        else {
+            String s = user.getEmail();
+            final String[] firebase_username = s.split("@");
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(firebase_username[0])
+                    .build();
+
+            user.updateProfile(profileUpdates)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
 
         WarehouseStock warehouseStock = new WarehouseStock(str_et_wbrand,str_et_wpacksize,str_et_wquantitycounted,str_et_wbreakages_brand,str_et_wquantity_breakages);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("merchandising");
-        ref.child(Merchandising.project_name).child("Warehouse Opening stock").setValue(warehouseStock);
+        DatabaseReference ref = database.getReference("Brand Ambassador");
+        ref.child(firebase_username[0]).child("Merchandising").child(Merchandising.project_name).child("Warehouse Opening stock").setValue(warehouseStock);
 
         Toast.makeText(getApplicationContext(), "Saving warehouse stocks ...", Toast.LENGTH_LONG).show();
-
+                            }
+                        }
+                    });
+        }
 
         /*MerchantBackend merchantBackend = new MerchantBackend(this);
         merchantBackend.execute(type, str_et_wbrand, str_et_wpacksize, str_et_wquantitycounted,
@@ -102,49 +134,97 @@ public class Stocks extends AppCompatActivity
 
     }
 
-    //Saving opening stock data
+    //Saving opening stock shop floor
     public void saveos(View view){
 
         Toast.makeText(getApplicationContext(), "Saving opening stocks ...", Toast.LENGTH_LONG).show();
 
-        String str_et_brand = et_brand.getText().toString();
-        String str_et_packsize = et_packsize.getText().toString();
-        String str_et_quantitycounted = et_quantitycounted.getText().toString();
-        String str_et_breakages_brand = et_breakages_brand.getText().toString();
-        String str_et_quantity_breakages = et_quantity_breakages.getText().toString();
+        final String str_et_brand = et_brand.getText().toString();
+        final String str_et_packsize = et_packsize.getText().toString();
+        final String str_et_quantitycounted = et_quantitycounted.getText().toString();
+        final String str_et_breakages_brand = et_breakages_brand.getText().toString();
+        final String str_et_quantity_breakages = et_quantity_breakages.getText().toString();
 
+        if (firebase_name != null) {
+            // Name, email address, and profile photo Url
+            firebase_name = user.getDisplayName();
+            ShopFloorStock shopFloorStock = new ShopFloorStock(str_et_brand,str_et_packsize,str_et_quantitycounted,str_et_breakages_brand,str_et_quantity_breakages);
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference("Brand Ambassador");
+            ref.child(firebase_name).child("Merchandising").child(Merchandising.project_name).child("Shop Floor Opening Stock").setValue(shopFloorStock);
+        }
 
-        //String type = "openStock";
+        else {
+            String s = user.getEmail();
+            final String[] firebase_username = s.split("@");
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(firebase_username[0])
+                    .build();
 
-        /*MerchantBackend merchantBackend = new MerchantBackend(this);
-        merchantBackend.execute(type, str_et_brand, str_et_packsize, str_et_quantitycounted,
-                str_et_breakages_brand, str_et_quantity_breakages);*/
+            user.updateProfile(profileUpdates)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
         ShopFloorStock shopFloorStock = new ShopFloorStock(str_et_brand,str_et_packsize,str_et_quantitycounted,str_et_breakages_brand,str_et_quantity_breakages);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("merchandising");
-        ref.child(Merchandising.project_name).child("Shop Floor Stock").setValue(shopFloorStock);
+        DatabaseReference ref = database.getReference("Brand Ambassador");
+        ref.child(firebase_username[0]).child("Merchandising").child(Merchandising.project_name).child("Shop Floor Opening Stock").setValue(shopFloorStock);
 
         Toast.makeText(getApplicationContext(), "Saving warehouse stocks ...", Toast.LENGTH_LONG).show();
-
+                            }
+                        }
+                    });
+        }
     }
 
     //Saving closing stock data
-    public void savecs(){
+    public void savecs(View view){
 
-        Toast.makeText(getApplicationContext(), "Saving closing stocks ...", Toast.LENGTH_LONG).show();
-
-        String str_et_cbrand = et_cbrand.getText().toString();
-        String str_et_cpacksize = et_cpacksize.getText().toString();
-        String str_et_cquantitycounted = et_cquantitycounted.getText().toString();
-        String str_et_sales = et_sales.getText().toString();
-        String str_et_cswarehouse = et_cswarehouse.getText().toString();
+        final String str_et_cbrand = et_cbrand.getText().toString();
+        final String str_et_cpacksize = et_cpacksize.getText().toString();
+        final String str_et_cquantitycounted = et_cquantitycounted.getText().toString();
+        final String str_et_sales = et_sales.getText().toString();
+        final String str_et_cswarehouse = et_cswarehouse.getText().toString();
 
         String type = "closingStock";
 
-        MerchantBackend merchantBackend = new MerchantBackend(this);
+        if (firebase_name != null) {
+            // Name, email address, and profile photo Url
+            firebase_name = user.getDisplayName();
+            ShopFloorClosingStock closingStock = new ShopFloorClosingStock(str_et_cbrand,str_et_cpacksize,str_et_cquantitycounted);
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference("Brand Ambassador");
+            ref.child(firebase_name).child("Merchandising").child(Merchandising.project_name).child("Shop Floor Closing Stock").setValue(closingStock);
+        }
+        else
+        {
+            String s = user.getEmail();
+            final String[] firebase_username = s.split("@");
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(firebase_username[0])
+                    .build();
+
+            user.updateProfile(profileUpdates)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                ShopFloorClosingStock closingStock = new ShopFloorClosingStock(str_et_cbrand,str_et_cpacksize,str_et_cquantitycounted);
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                DatabaseReference ref = database.getReference("Brand Ambassador");
+                                ref.child(firebase_username[0]).child("Merchandising").child(Merchandising.project_name).child("Shop Floor Closing Stock").setValue(closingStock);
+
+                                Toast.makeText(getApplicationContext(), "Last Tab Saving warehouse stocks ...", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+        }
+
+        /*MerchantBackend merchantBackend = new MerchantBackend(this);
         merchantBackend.execute(type, str_et_cbrand, str_et_cpacksize, str_et_cquantitycounted,
                 str_et_sales, str_et_cswarehouse);
-
+        */
 
     }
 
