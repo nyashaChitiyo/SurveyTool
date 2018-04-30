@@ -1,4 +1,4 @@
-package com.example.volley;
+package com.codel.volley;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

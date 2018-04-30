@@ -1,4 +1,4 @@
-package com.example.gifty.surveytool;
+package com.codel.zw.surveytool;
 
 import org.junit.Test;
 

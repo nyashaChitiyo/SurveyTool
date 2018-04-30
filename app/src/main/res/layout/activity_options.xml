@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.gifty.surveytool.Options">
+    tools:context="com.codel.zw.surveytool.com.example.gifty.zw.Options">
 
 </android.support.constraint.ConstraintLayout>

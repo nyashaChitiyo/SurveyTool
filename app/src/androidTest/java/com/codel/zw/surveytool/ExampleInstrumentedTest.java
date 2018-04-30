@@ -1,4 +1,4 @@
-package com.example.gifty.surveytool;
+package com.codel.zw.surveytool;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

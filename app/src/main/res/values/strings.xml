@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SurveyTool</string>
+    <string name="app_name">Saints Mobile Go</string>
     <string name="action_settings">Settings</string>
     <string name="textview">TextView</string>
     <string name="title_activity_surveymodules">KYC Survey Modules</string>

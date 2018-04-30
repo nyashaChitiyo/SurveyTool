@@ -1,4 +1,4 @@
-package com.example.volley;
+package com.codel.volley;
 
 import org.junit.Test;
 

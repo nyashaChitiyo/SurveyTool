@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.gifty.surveytool.SaintsLogin"
+    tools:context="com.codel.zw.surveytool.com.example.gifty.zw.SaintsLogin"
     tools:showIn="@layout/activity_saints_login">
 
     <RelativeLayout
