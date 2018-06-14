@@ -219,6 +219,7 @@
             android:background="#ff8c00"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="15dp"
+            android:onClick="attachPic"
             android:textColor="#322a29"
             android:text="Attach" />
 
