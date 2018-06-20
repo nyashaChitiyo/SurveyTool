@@ -38,7 +38,7 @@ import com.google.firebase.storage.UploadTask;
 public class Sales extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    static String projectName,projectID;
+    static String projectName;
     private FirebaseUser user;
     EditText firstName,lastName,dob,personalNumber,homeNumber,workNumber,email,workAddress,idNumber;
     String firebase_name;
@@ -152,15 +152,6 @@ public class Sales extends AppCompatActivity
                             });
                 }
 
-            }
-        });
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
             }
         });
 

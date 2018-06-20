@@ -315,7 +315,6 @@ public class KycRegistration extends AppCompatActivity
                                     DatabaseReference ref = database.getReference("Brand Ambassador");
 
                                     //Get online user
-
                                     //firebase_name = user.getDisplayName();
                                     ref.child(firebase_username[0]).child("Know Your Customer").child(str_firstname+" "+str_lastname).setValue(pojo);
                                 }

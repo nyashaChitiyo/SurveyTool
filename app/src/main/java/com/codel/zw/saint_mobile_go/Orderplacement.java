@@ -13,12 +13,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import com.codel.zw.saint_mobile_go.pojo.OrderPlacementPojo;
 
 public class Orderplacement extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Button orderbtn, scanbtn;
+    private EditText orderNumber,dateOrder,PackSize,quantity;
+    private String txtorderNumber,txtdateOrder,txtPackSize,txtquantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,10 @@ public class Orderplacement extends AppCompatActivity
         setContentView(R.layout.activity_orderplacement);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        orderNumber = findViewById(R.id.ordernumber);
+        dateOrder = findViewById(R.id.orderdate);
+        PackSize = findViewById(R.id.wpacksize);
+        quantity = findViewById(R.id.wquantitycounted);
 
         orderbtn = (Button)findViewById(R.id.orderbtn);
         scanbtn = (Button)findViewById(R.id.scanbtn);
@@ -33,7 +42,12 @@ public class Orderplacement extends AppCompatActivity
         orderbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Processing Order ...", Toast.LENGTH_LONG).show();
+                txtdateOrder = dateOrder.getText().toString();
+                txtorderNumber = orderNumber.getText().toString();
+                txtPackSize = PackSize.getText().toString();
+                txtquantity = quantity.getText().toString();
+                OrderPlacementPojo pojo = new OrderPlacementPojo(txtorderNumber,txtdateOrder,txtPackSize,txtquantity);
+                Toast.makeText(getApplicationContext(), "Processing Order ... "+txtdateOrder, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -41,15 +55,6 @@ public class Orderplacement extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Scan unreachable", Toast.LENGTH_LONG).show();
-            }
-        });
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
             }
         });
 
