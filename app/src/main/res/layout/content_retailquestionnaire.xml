@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +7,12 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.codel.zw.surveytool.com.example.gifty.zw.Retailquestionnaire"
     tools:showIn="@layout/activity_retailquestionnaire">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
 
         <TextView
             android:id="@+id/q1"
@@ -16,12 +22,17 @@
             android:layout_height="wrap_content"
             android:text="1. Have you ever used this product?" />
 
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <RadioButton
             android:id="@+id/q1yes"
             android:layout_below="@+id/q1"
             android:layout_marginLeft="26dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onRadioBtnClicked"
             android:text="Yes" />
 
         <RadioButton
@@ -29,35 +40,43 @@
             android:layout_below="@+id/q1"
             android:layout_toRightOf="@+id/q1yes"
             android:layout_marginLeft="40dp"
+            android:onClick="onRadioBtnClicked"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="No" />
-
+        </RadioGroup>
         <TextView
             android:id="@+id/q2"
             android:layout_width="wrap_content"
             android:layout_below="@+id/q1yes"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="16dp"
             android:layout_height="wrap_content"
             android:text="2. What is your opinion of it?" />
 
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
         <RadioButton
             android:id="@+id/q2yes"
             android:layout_below="@+id/q2"
             android:layout_marginLeft="26dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="haveUsed"
             android:text="Good" />
 
         <RadioButton
             android:id="@+id/q2no"
             android:layout_below="@+id/q2"
             android:layout_toRightOf="@+id/q2yes"
+            android:onClick="haveUsed"
             android:layout_marginLeft="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bad" />
-
+        </RadioGroup>
         <TextView
             android:id="@+id/q3"
             android:layout_width="wrap_content"
@@ -67,28 +86,36 @@
             android:layout_height="wrap_content"
             android:text="3. Which product do you think is the best?" />
 
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_below="@+id/q2yes"
+            android:layout_marginRight="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <EditText
-            android:id="@+id/product"
+            android:id="@+id/favprdct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/wpacksize1"
-            android:layout_marginTop="200dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:ems="10"
             android:inputType="text" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+
         <Button
             android:id="@+id/saveq"
             android:layout_below="@+id/spinner"
             android:background="#322a29"
             android:textColor="#ff8c00"
+            android:paddingBottom="40dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="250dp"
+            android:onClick="save"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:text="SAVE" />
-</LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

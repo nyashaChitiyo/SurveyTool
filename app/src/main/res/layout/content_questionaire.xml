@@ -8,8 +8,9 @@
     tools:context="com.codel.zw.surveytool.com.example.gifty.zw.Questionaire"
     tools:showIn="@layout/app_bar_questionaire">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="match_parent">
 
         <TextView
@@ -41,14 +42,23 @@
             android:layout_marginRight="20dp"
             android:text="Load" />
 
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="14dp"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="Enter Question" />
+
         <EditText
             android:id="@+id/q1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_marginTop="20dp"
             android:layout_below="@+id/load"
             android:layout_marginLeft="16dp"
-            android:layout_height="wrap_content"
-            android:text="1. Is this your first mobile number?" />
+            android:layout_height="wrap_content" />
+
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -57,27 +67,38 @@
             android:id="@+id/radiogroupq1">
 
         <RadioButton
+            android:id="@+id/q1yes"
             android:layout_marginLeft="26dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onRadioBtnClicked"
             android:text="Yes" />
 
         <RadioButton
+            android:id="@+id/q1no"
             android:layout_marginLeft="40dp"
             android:layout_width="wrap_content"
+            android:onClick="onRadioBtnClicked"
             android:layout_height="wrap_content"
             android:text="No" />
-
         </RadioGroup>
+
+        <TextView
+            android:id="@+id/question2"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="14dp"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="Enter Question" />
 
         <EditText
             android:id="@+id/q2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_below="@+id/radiogroupq1"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="16dp"
-            android:layout_height="wrap_content"
-            android:text="2. Are you happy with Econet services?" />
+            android:layout_height="wrap_content" />
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -86,28 +107,40 @@
             android:id="@+id/rgq2">
 
         <RadioButton
+            android:id="@+id/q2yes"
             android:layout_marginLeft="26dp"
             android:layout_width="wrap_content"
+            android:onClick="onRadioBtnClicked"
             android:layout_height="wrap_content"
             android:text="Yes" />
 
         <RadioButton
+            android:id="@+id/q2no"
             android:layout_toRightOf="@+id/q2yes"
             android:layout_marginLeft="40dp"
+            android:onClick="onRadioBtnClicked"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="No" />
 
         </RadioGroup>
 
+        <TextView
+            android:id="@+id/question3"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="14dp"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content"
+            android:text="Enter Question" />
+
         <EditText
             android:id="@+id/q3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_below="@+id/rgq2"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="16dp"
-            android:layout_height="wrap_content"
-            android:text="3. Which other networks are you on?" />
+            android:layout_height="wrap_content" />
 
         <Spinner
             android:id="@+id/networks"
@@ -122,11 +155,13 @@
             android:layout_below="@+id/networks"
             android:background="#322a29"
             android:textColor="#ff8c00"
+            android:onClick="save"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:text="SAVE" />
-    </RelativeLayout>
+
+    </LinearLayout>
 </ScrollView>

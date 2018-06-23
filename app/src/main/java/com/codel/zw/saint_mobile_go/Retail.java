@@ -37,6 +37,7 @@ import static android.os.Build.VERSION_CODES.O;
 
 public class Retail extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    static String projectName,stfullname;
     String firebase_name;
     EditText etprojectname,etfullname,etphonenumber,etemailentry,etclient,etba,etwbrand,etwpacksize,etwquantitycounted,
             etwbreakages_brand,etwquantity_breakages,etbrand,etpacksize,etquantitycounted,etbreakages_brand,
@@ -270,7 +271,8 @@ public class Retail extends AppCompatActivity
         final String txtetrphonenumber2 = etrphonenumber2.getText().toString();
         final String txtetreceiptnumber = etreceiptnumber.getText().toString();
         final String txtetaddress = etaddress.getText().toString();
-
+        projectName = str_etprojectname;
+        stfullname = str_etfullname;
         String type = "retaildata";
 
         if (firebase_name != null) {

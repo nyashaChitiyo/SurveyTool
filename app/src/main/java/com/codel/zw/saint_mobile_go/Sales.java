@@ -38,7 +38,7 @@ import com.google.firebase.storage.UploadTask;
 public class Sales extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    static String projectName;
+    static String projectName,stfname;
     private FirebaseUser user;
     EditText firstName,lastName,dob,personalNumber,homeNumber,workNumber,email,workAddress,idNumber;
     String firebase_name;

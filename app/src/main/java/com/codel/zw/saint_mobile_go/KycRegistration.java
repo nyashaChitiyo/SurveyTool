@@ -50,6 +50,7 @@ public class KycRegistration extends AppCompatActivity
 
     private static final String TAG = "KycRegistration";
     String firebase_name;
+    static String qname;
     Button kycpicbtn, kycnxtbtn;
     ImageView kycpic;
     EditText firstname, lastname, dob, personalphone, homephone, workphone, email, facebook,
@@ -265,7 +266,7 @@ public class KycRegistration extends AppCompatActivity
         final String str_edulevel = edulevel.getSelectedItem().toString();
         final String str_householdownership = householdownership.getSelectedItem().toString();
         final String email = user.getEmail();
-
+        qname = str_firstname+" "+str_lastname;
 
             String type = "kycdata";
 
