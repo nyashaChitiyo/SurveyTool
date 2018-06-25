@@ -39,16 +39,11 @@ public class Questionaire extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Iterator iteratorAns,iteratorQue;
-    String firebase_name;
     private FirebaseUser user;
     EditText q1,q2,q3;
     List<String> ans = new ArrayList<String>();
     List<String> que = new ArrayList<String>();
 
-    Spinner networks, questionnaire;
-    ArrayAdapter<CharSequence> adapeter1, adapter2;
-
-    Button load;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,29 +56,6 @@ public class Questionaire extends AppCompatActivity
         q1 = findViewById(R.id.q1);
         q2 = findViewById(R.id.q2);
         q3 = findViewById(R.id.q3);
-
-
-        networks = (Spinner)findViewById(R.id.networks);
-        questionnaire = (Spinner)findViewById(R.id.questionaire);
-        load = (Button)findViewById(R.id.load);
-
-        //Initializing networks spinner
-        adapeter1 = ArrayAdapter.createFromResource(this, R.array.networks_question, android.R.layout.simple_spinner_item);
-        adapeter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        networks.setAdapter(adapeter1);
-
-        //Loading questionnaires
-        adapter2 = ArrayAdapter.createFromResource(this, R.array.load_question, android.R.layout.simple_spinner_item);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        questionnaire.setAdapter(adapter2);
-
-        //loading
-        load.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Loading Questionnaire Survey...", Toast.LENGTH_LONG).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -167,6 +139,10 @@ public class Questionaire extends AppCompatActivity
                 if (checked)
                     ans.add("YES");
                 break;
+            case R.id.q1no:
+                if (checked)
+                    ans.add("NO");
+                break;
             case R.id.q2yes:
                 if (checked)
                     ans.add("YES");
@@ -175,7 +151,11 @@ public class Questionaire extends AppCompatActivity
                 if (checked)
                     ans.add("NO");
                 break;
-            case R.id.q1no:
+            case R.id.q3yes:
+                if (checked)
+                    ans.add("YES");
+                break;
+            case R.id.q3no:
                 if (checked)
                     ans.add("NO");
                 break;
@@ -197,45 +177,14 @@ public class Questionaire extends AppCompatActivity
 
         while(iteratorAns.hasNext()&& iteratorQue.hasNext())
          {
-            if (firebase_name != null) {
-                // Name, email address, and profile photo Url
-                firebase_name = user.getDisplayName();
-                KycQuestionairePojo pojo = new KycQuestionairePojo(iteratorAns.next().toString());
-
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference ref = database.getReference("Brand Ambassador");
-
-                //Get online user
-
-                //firebase_name = user.getDisplayName();
-                ref.child(firebase_name).child("Know Your Customer").child(KycRegistration.qname).child("Questionaire").child(iteratorQue.next().toString()).setValue(pojo);
-            }
-
-            else {
-                String s = user.getEmail();
-                final String[] firebase_username = s.split("@");
-                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(firebase_username[0])
-                        .build();
-
-                user.updateProfile(profileUpdates)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
                                     KycQuestionairePojo pojo = new KycQuestionairePojo(iteratorAns.next().toString());
 
                                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                                     DatabaseReference ref = database.getReference("Brand Ambassador");
 
 
-                                    ref.child(firebase_username[0]).child("Know Your Customer").child(KycRegistration.qname).child("Questionaire").child(iteratorQue.next().toString()).setValue(pojo);
+                                    ref.child(user.getDisplayName()).child("Know Your Customer").child(KycRegistration.qname).child("Questionaire").child(iteratorQue.next().toString()).setValue(pojo);
+                 Toast.makeText(getApplicationContext(), "Saving data...", Toast.LENGTH_LONG).show();
                                 }
-                            }
-                        });
             }
-
-        }
-        Toast.makeText(getApplicationContext(), "Saving data...", Toast.LENGTH_LONG).show();
-    }
 }
