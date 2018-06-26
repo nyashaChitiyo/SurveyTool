@@ -39,6 +39,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -317,7 +318,7 @@ public class KycRegistration extends AppCompatActivity
 
                                     //Get online user
                                     //firebase_name = user.getDisplayName();
-                                    ref.child(firebase_username[0]).child("Know Your Customer").child(str_firstname+" "+str_lastname).setValue(pojo);
+                                    ref.child(firebase_username[0]).child("Know Your Customer").child(str_firstname+" "+str_lastname).child(""+new Date()).setValue(pojo);
                                 }
                             }
                         });
