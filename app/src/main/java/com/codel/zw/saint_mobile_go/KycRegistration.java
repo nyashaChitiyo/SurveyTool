@@ -340,6 +340,7 @@ public class KycRegistration extends AppCompatActivity
                                     //Get online user
                                     //firebase_name = user.getDisplayName();
                                    ref.child(firebase_username[0]).child(month).child(day_date).child("Know Your Customer").child(""+date).child(str_firstname+" "+str_lastname).setValue(pojo);
+                                    ref.child(firebase_username[0]).child("Know Your Customer").child(str_firstname+" "+str_lastname).child(""+new Date()).setValue(pojo);
                                 }
                             }
                         });
@@ -446,4 +447,5 @@ public class KycRegistration extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

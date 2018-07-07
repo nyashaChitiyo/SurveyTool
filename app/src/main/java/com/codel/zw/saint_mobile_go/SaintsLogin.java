@@ -3,9 +3,12 @@ package com.codel.zw.saint_mobile_go;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -30,7 +33,16 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import android.location.LocationManager;
+
+
+import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 
 public class SaintsLogin extends AppCompatActivity {
@@ -39,8 +51,10 @@ public class SaintsLogin extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private SimpleLocation mLocation;
 
-
-
+    Location location;
+    double latitude,longitude;
+    private FirebaseUser user;
+    Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +80,19 @@ public class SaintsLogin extends AppCompatActivity {
         final double latitude = mLocation.getLatitude();
 
         final double longitude = mLocation.getLongitude();
+        LocationManager r = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        location = new Location(""+r);
+        mAuth = FirebaseAuth.getInstance();
+        email = (EditText)findViewById(R.id.etemail);
+        password = (EditText)findViewById(R.id.etpassword);
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
 
         Toast.makeText(SaintsLogin.this, "Latitude: "+latitude, Toast.LENGTH_SHORT).show();
 
         Toast.makeText(SaintsLogin.this, "Longitude: "+longitude, Toast.LENGTH_SHORT).show();
 
-
+        getCompleteAddressString(latitude, longitude);
 
 
 
@@ -92,6 +112,15 @@ public class SaintsLogin extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             Intent module = new Intent(getApplicationContext(), Surveymodules.class);
                             module.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference ref = database.getReference("Brand Ambassador");
+
+
+
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            ref.child(user.getDisplayName()).child("location").setValue("7 Mcmeekan road, Milton Park");
+
                             startActivity(module);
                         } else {
 
@@ -128,5 +157,28 @@ public class SaintsLogin extends AppCompatActivity {
 
         super.onPause();
 
+    }
+    private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
+        String strAdd = "";
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
+            if (addresses != null) {
+                Address returnedAddress = addresses.get(0);
+                StringBuilder strReturnedAddress = new StringBuilder("");
+
+                for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
+                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
+                }
+                strAdd = strReturnedAddress.toString();
+                Toast.makeText(SaintsLogin.this,"My Current loction address" +strReturnedAddress.toString(),Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(SaintsLogin.this,"My Current loction address No Address returned!",Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(SaintsLogin.this,"My Current loction address Canont get Address!",Toast.LENGTH_LONG).show();
+        }
+        return strAdd;
     }
 }
