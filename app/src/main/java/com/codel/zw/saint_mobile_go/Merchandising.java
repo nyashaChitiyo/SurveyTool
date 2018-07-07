@@ -31,13 +31,25 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Merchandising extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    static Date date1;
+    Date date;
+    SimpleDateFormat simpleDateformat;
+    SimpleDateFormat simpleDateformatYear;
+    static String month1;
+    String month;
+    static String day_date;
+
+
+
     static String project_name;
-    Button savenext, nextbtn;
+    Button savenext;
+    static String userName;
     Spinner locations, outlet, branchmanagement;
-    private FirebaseAnalytics firebaseAnalytics;
-    //Defining EditText variables
     EditText projectname, fullname, phonenumber, email, brandAmbassador, client;
 
     ArrayAdapter<CharSequence> adapter1, adapter2, adapter3;
@@ -46,12 +58,19 @@ public class Merchandising extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_merchandising);
-        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        date = new Date();
+        date1 = date;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        simpleDateformat = new SimpleDateFormat("MMMMyyyy");
+        simpleDateformatYear = new SimpleDateFormat("ddMMMMyyyy");
+        month = simpleDateformat.format(date);
+        day_date = simpleDateformatYear.format(date);
+        month1 =  month;
+
+
         savenext = (Button)findViewById(R.id.savenext);
-        nextbtn = (Button)findViewById(R.id.nextbtn);
         locations = (Spinner)findViewById(R.id.locations);
         outlet = (Spinner)findViewById(R.id.outlet);
         branchmanagement = (Spinner)findViewById(R.id.branchmanagement);
@@ -75,11 +94,10 @@ public class Merchandising extends AppCompatActivity
                     String firebase_name = user.getDisplayName();
             @Override
             public void onClick(View v) {
-                Toast.makeText(Merchandising.this,firebase_name,Toast.LENGTH_LONG).show();
                 String s = user.getEmail();
                 final String[] firebase_username = s.split("@");
                 if (firebase_name != null) {
-                    Toast.makeText(Merchandising.this,firebase_username[0],Toast.LENGTH_LONG).show();
+                    Toast.makeText(Merchandising.this,"Saving Data",Toast.LENGTH_LONG).show();
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                             .setDisplayName(firebase_username[0])
                             .build();
@@ -91,6 +109,7 @@ public class Merchandising extends AppCompatActivity
                                     if (task.isSuccessful()) {
                                         String str_projectname = projectname.getText().toString();
                                         String str_fullname = fullname.getText().toString();
+                                        userName = str_fullname;
                                         String str_phonenumber = phonenumber.getText().toString();
                                         String str_email = email.getText().toString();
                                         String str_client = client.getText().toString();
@@ -106,15 +125,13 @@ public class Merchandising extends AppCompatActivity
                                         WarehouseStock warehouseStock = new WarehouseStock("nyasha","nyasha","nyasha","nyasha","nyasha");
                                         MerchandisingPojo pojo = new MerchandisingPojo(warehouseStock,str_projectname,str_fullname,str_phonenumber,str_email,str_client,str_ba,str_location,str_outlet,str_bmngmnt);
 
-                                        ref.child(firebase_username[0]).child("Merchandising").child(str_projectname).setValue(pojo);
+                                        ref.child(firebase_username[0]).child(month).child(day_date).child("Merchandising").child(""+date).child(str_projectname).setValue(pojo);
 
                                         Intent savenextbtn = new Intent(getApplicationContext(), Reports.class);
                                         startActivity(savenextbtn);                                }
                                 }
                             });
-
                 }
-
                 else {
                     Toast.makeText(Merchandising.this,firebase_username[0],Toast.LENGTH_LONG).show();
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
@@ -128,6 +145,7 @@ public class Merchandising extends AppCompatActivity
                                                            if (task.isSuccessful()) {
                                                                String str_projectname = projectname.getText().toString();
                 String str_fullname = fullname.getText().toString();
+                userName = str_fullname;
                 String str_phonenumber = phonenumber.getText().toString();
                 String str_email = email.getText().toString();
                 String str_client = client.getText().toString();
@@ -143,23 +161,19 @@ public class Merchandising extends AppCompatActivity
                 WarehouseStock warehouseStock = new WarehouseStock("nyasha","nyasha","nyasha","nyasha","nyasha");
                 MerchandisingPojo pojo = new MerchandisingPojo(warehouseStock,str_projectname,str_fullname,str_phonenumber,str_email,str_client,str_ba,str_location,str_outlet,str_bmngmnt);
 
-                ref.child(firebase_username[0]).child("Merchandising").setValue(pojo);
+                                                               ref.child(firebase_username[0]).child(month).child(day_date).child("Merchandising").child(""+date).child(str_projectname).setValue(pojo);
 
-                Intent savenextbtn = new Intent(getApplicationContext(), Reports.class);
-                startActivity(savenextbtn);                                }
+                     }
                                                        }
                             });
                 }
+                Intent savenextbtn = new Intent(getApplicationContext(), Reports.class);
+                startActivity(savenextbtn);
             }
+
         });
 
-        nextbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent merch = new Intent(getApplicationContext(), Reports.class);
-                startActivity(merch);
-            }
-        });
+
 
         //Initializing locations
         adapter1 = ArrayAdapter.createFromResource(this, R.array.geolocations, android.R.layout.simple_spinner_item);

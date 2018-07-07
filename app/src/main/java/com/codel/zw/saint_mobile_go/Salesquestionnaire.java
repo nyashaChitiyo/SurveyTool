@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.codel.zw.saint_mobile_go.pojo.KycQuestionairePojo;
 import com.codel.zw.saint_mobile_go.pojo.RetailQuestionairePojo;
 import com.codel.zw.saint_mobile_go.pojo.SalesQuestionairePojo;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,11 +22,18 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class Salesquestionnaire extends AppCompatActivity {
 
-    private String qxn,product,firebase_name,qxn2;
+    Iterator iteratorAns,iteratorQue;
     private FirebaseUser user;
-    private EditText favPrdct;
+    EditText q1,q2,q3;
+    List<String> ans = new ArrayList<String>();
+    List<String> que = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +42,38 @@ public class Salesquestionnaire extends AppCompatActivity {
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         user = FirebaseAuth.getInstance().getCurrentUser();
-        favPrdct = findViewById(R.id.favprdct);
+        q1 = findViewById(R.id.q1);
+        q2 = findViewById(R.id.q2);
+        q3 = findViewById(R.id.q3);
     }
 
-    public void save(View view){
+    public void save(View view)
+    {
+        final String txtQ1 = q1.getText().toString();
+        final String txtQ2 = q2.getText().toString();
+        final String txtQ3 = q3.getText().toString();
+
+        que.add(txtQ1);
+        que.add(txtQ2);
+        que.add(txtQ3);
+
+        iteratorAns = ans.iterator();
+        iteratorQue = que.iterator();
+
+        while(iteratorAns.hasNext()&& iteratorQue.hasNext())
+        {
+            SalesQuestionairePojo pojo = new SalesQuestionairePojo(iteratorAns.next().toString());
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference("Brand Ambassador");
+
+
+            ref.child(user.getDisplayName()).child(Sales.month1).child(Sales.day_date).child("Sales and Distribution").child(""+Sales.date1).child(Sales.projectName).child("Questionaire").child(iteratorQue.next().toString()).setValue(pojo);
+            Toast.makeText(getApplicationContext(), "Saving data...", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /*{
         product = favPrdct.getText().toString();
         if (firebase_name != null) {
             // Name, email address, and profile photo Url
@@ -66,7 +102,8 @@ public class Salesquestionnaire extends AppCompatActivity {
                         }
                     });
         }
-    }
+    }*/
+
     public void onRadioBtnClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -75,28 +112,29 @@ public class Salesquestionnaire extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.q1yes:
                 if (checked)
-                    qxn = "Yes";
+                    ans.add("YES");
                 break;
             case R.id.q1no:
                 if (checked)
-                    qxn = "NO";
+                    ans.add("NO");
                 break;
-        }
-    }
-    public void haveUsed(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
             case R.id.q2yes:
                 if (checked)
-                    qxn2 = "Yes";
+                    ans.add("YES");
                 break;
             case R.id.q2no:
                 if (checked)
-                    qxn2 = "NO";
+                    ans.add("NO");
                 break;
+            case R.id.q3yes:
+                if (checked)
+                    ans.add("YES");
+                break;
+            case R.id.q3no:
+                if (checked)
+                    ans.add("NO");
+                break;
+
         }
     }
 }

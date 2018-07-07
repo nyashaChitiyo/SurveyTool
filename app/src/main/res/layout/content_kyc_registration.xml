@@ -8,7 +8,6 @@
     tools:context="com.codel.zw.surveytool.com.example.gifty.zw.KycRegistration"
     tools:showIn="@layout/app_bar_kyc_registration">
 
-
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -88,6 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/gender"
+            android:onClick="onRadioBtnClicked"
             android:layout_marginLeft="26dp"
             android:text="Male" />
 
@@ -96,6 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/gender"
+            android:onClick="onRadioBtnClicked"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/male"
             android:text="Female" />

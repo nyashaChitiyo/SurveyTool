@@ -7,8 +7,11 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality. 
     -->
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -22,7 +25,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.codel.zw.saint_mobile_go.Welcomelogin"
+            android:name=".Welcomelogin"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -32,67 +35,67 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.codel.zw.saint_mobile_go.Surveymodules"
+            android:name=".Surveymodules"
             android:label="@string/title_activity_surveymodules"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.KycRegistration"
+            android:name=".KycRegistration"
             android:label="@string/title_activity_kyc_registration"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.Merchandising"
+            android:name=".Merchandising"
             android:label="@string/title_activity_merchandising"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.Retail"
+            android:name=".Retail"
             android:label="@string/title_activity_retail"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.Sales"
+            android:name=".Sales"
             android:label="@string/title_activity_sales"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.Questionaire"
+            android:name=".Questionaire"
             android:label="@string/title_activity_questionaire"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.Reports"
+            android:name=".Reports"
             android:label="@string/title_activity_reports"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.Stocks"
+            android:name=".Stocks"
             android:label="@string/title_activity_stocks"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.Onshelf"
+            android:name=".Onshelf"
             android:label="@string/title_activity_onshelf"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.Orderplacement"
+            android:name=".Orderplacement"
             android:label="@string/title_activity_orderplacement"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.Retailquestionnaire"
+            android:name=".Retailquestionnaire"
             android:label="@string/title_activity_retailquestionnaire"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.Salesreps"
+            android:name=".Salesreps"
             android:label="@string/title_activity_salesreps"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.Salesquestionnaire"
+            android:name=".Salesquestionnaire"
             android:label="@string/title_activity_salesquestionnaire"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.codel.zw.saint_mobile_go.Options" />
+        <activity android:name=".Options" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.SettingsActivity"
+            android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.account"
+            android:name=".account"
             android:label="@string/title_activity_account"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.Help"
+            android:name=".Help"
             android:label="@string/title_activity_help"
             android:theme="@style/AppTheme.NoActionBar" />
         <!--
@@ -108,18 +111,36 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.codel.zw.saint_mobile_go.MapsActivity"
+            android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.LoginActivity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.SaintsLogin"
+            android:name=".SaintsLogin"
             android:label="@string/title_activity_saints_login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.codel.zw.saint_mobile_go.MobileGo"
+            android:name=".MobileGo"
             android:label="@string/title_activity_mobile_go"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service
+            android:name=".GPSTracker"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".pojo.GPSTracker"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".MarketSurvey"
+            android:label="@string/title_activity_market_survey"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UsageAndAttitudes"
+            android:label="@string/title_activity_usage_and_attitudes"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

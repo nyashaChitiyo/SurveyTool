@@ -1,44 +1,53 @@
 package com.codel.zw.saint_mobile_go.pojo;
 
 public class OrderPlacementPojo {
-    private String txtorderNumber,txtdateOrder,txtPackSize,txtquantity;
+    private String orderNumber,PackSize,quantity,dateOrder,deliveryDate;
 
-    public OrderPlacementPojo(String txtorderNumber, String txtdateOrder, String txtPackSize, String txtquantity) {
-        this.txtorderNumber = txtorderNumber;
-        this.txtdateOrder = txtdateOrder;
-        this.txtPackSize = txtPackSize;
-        this.txtquantity = txtquantity;
+    public OrderPlacementPojo(String orderNumber, String packSize, String quantity, String dateOrder, String deliveryDate) {
+        this.orderNumber = orderNumber;
+        PackSize = packSize;
+        this.quantity = quantity;
+        this.dateOrder = dateOrder;
+        this.deliveryDate = deliveryDate;
     }
 
-    public String getTxtorderNumber() {
-        return txtorderNumber;
+    public String getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setTxtorderNumber(String txtorderNumber) {
-        this.txtorderNumber = txtorderNumber;
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
-    public String getTxtdateOrder() {
-        return txtdateOrder;
+    public String getPackSize() {
+        return PackSize;
     }
 
-    public void setTxtdateOrder(String txtdateOrder) {
-        this.txtdateOrder = txtdateOrder;
+    public void setPackSize(String packSize) {
+        PackSize = packSize;
     }
 
-    public String getTxtPackSize() {
-        return txtPackSize;
+    public String getQuantity() {
+        return quantity;
     }
 
-    public void setTxtPackSize(String txtPackSize) {
-        this.txtPackSize = txtPackSize;
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
-    public String getTxtquantity() {
-        return txtquantity;
+    public String getDateOrder() {
+        return dateOrder;
     }
 
-    public void setTxtquantity(String txtquantity) {
-        this.txtquantity = txtquantity;
+    public void setDateOrder(String dateOrder) {
+        this.dateOrder = dateOrder;
+    }
+
+    public String getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(String deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
 }

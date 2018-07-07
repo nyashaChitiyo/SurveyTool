@@ -191,20 +191,7 @@
             android:layout_marginLeft="16dp"
             android:layout_height="match_parent"
             android:onClick="btnNext"
-            android:text="SAVE" />
+            android:text="SAVE and NEXT" />
 
-        <Button
-            android:id="@+id/nextbtn"
-            android:layout_below="@+id/savenext"
-            android:layout_width="wrap_content"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="20dp"
-            android:background="#322a29"
-            android:layout_marginBottom="20dp"
-            android:textColor="#ff8c00"
-            android:layout_marginLeft="16dp"
-            android:layout_height="match_parent"
-            android:onClick="btnNext"
-            android:text="NEXT" />
     </RelativeLayout>
 </ScrollView>

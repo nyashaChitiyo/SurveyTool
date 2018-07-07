@@ -2,11 +2,9 @@ package com.codel.zw.saint_mobile_go;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,20 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.codel.zw.saint_mobile_go.pojo.KycQuestionairePojo;
-import com.codel.zw.saint_mobile_go.pojo.KycRegistrationPojo;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -35,10 +27,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.codel.zw.saint_mobile_go.KycRegistration.day_date;
+public class MarketSurvey extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
 
-public class Questionaire extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
 
     Iterator iteratorAns,iteratorQue;
     private FirebaseUser user;
@@ -178,14 +168,14 @@ public class Questionaire extends AppCompatActivity
         iteratorQue = que.iterator();
 
         while(iteratorAns.hasNext()&& iteratorQue.hasNext())
-         {
-                                    KycQuestionairePojo pojo = new KycQuestionairePojo(iteratorAns.next().toString());
+        {
+            KycQuestionairePojo pojo = new KycQuestionairePojo(iteratorAns.next().toString());
 
-                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                    DatabaseReference ref = database.getReference("Brand Ambassador");
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = database.getReference("Brand Ambassador");
 
-                                    ref.child(user.getDisplayName()).child(KycRegistration.month1).child(KycRegistration.day_date).child("Know Your Customer").child(""+KycRegistration.date1).child(KycRegistration.qname).child("Questionaire").child(iteratorQue.next().toString()).setValue(pojo);
-                 Toast.makeText(getApplicationContext(), "Saving data...", Toast.LENGTH_LONG).show();
-                                }
-            }
+            ref.child(user.getDisplayName()).child(KycRegistration.month1).child(KycRegistration.day_date).child("Market Survey").child(""+KycRegistration.date1).child(KycRegistration.qname).child(iteratorQue.next().toString()).setValue(pojo);
+            Toast.makeText(getApplicationContext(), "Saving data...", Toast.LENGTH_LONG).show();
+        }
+    }
 }

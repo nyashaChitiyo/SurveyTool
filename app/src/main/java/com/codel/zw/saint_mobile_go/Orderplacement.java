@@ -16,14 +16,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.codel.zw.saint_mobile_go.pojo.MerchandisingPojo;
 import com.codel.zw.saint_mobile_go.pojo.OrderPlacementPojo;
+import com.codel.zw.saint_mobile_go.pojo.WarehouseStock;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Orderplacement extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Button orderbtn, scanbtn;
-    private EditText orderNumber,dateOrder,PackSize,quantity;
-    private String txtorderNumber,txtdateOrder,txtPackSize,txtquantity;
+    private EditText orderNumber,dateOrder,PackSize,quantity,deliveryDate;
+    private String txtorderNumber,txtdateOrder,txtPackSize,txtquantity,txtorderdeliverydate;
+    private String firebase_name;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +40,13 @@ public class Orderplacement extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         orderNumber = findViewById(R.id.ordernumber);
+        user = FirebaseAuth.getInstance().getCurrentUser();
         dateOrder = findViewById(R.id.orderdate);
         PackSize = findViewById(R.id.wpacksize);
         quantity = findViewById(R.id.wquantitycounted);
+        deliveryDate = findViewById(R.id.orderdeliverydate);
 
         orderbtn = (Button)findViewById(R.id.orderbtn);
-        scanbtn = (Button)findViewById(R.id.scanbtn);
 
         orderbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,15 +55,15 @@ public class Orderplacement extends AppCompatActivity
                 txtorderNumber = orderNumber.getText().toString();
                 txtPackSize = PackSize.getText().toString();
                 txtquantity = quantity.getText().toString();
-                OrderPlacementPojo pojo = new OrderPlacementPojo(txtorderNumber,txtdateOrder,txtPackSize,txtquantity);
-                Toast.makeText(getApplicationContext(), "Processing Order ... "+txtdateOrder, Toast.LENGTH_LONG).show();
-            }
-        });
+                txtorderdeliverydate = deliveryDate.getText().toString();
 
-        scanbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Scan unreachable", Toast.LENGTH_LONG).show();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference ref = database.getReference("Brand Ambassador");
+                firebase_name = user.getDisplayName();
+
+                OrderPlacementPojo pojo = new OrderPlacementPojo(txtorderNumber,txtPackSize,txtquantity,txtdateOrder,txtorderdeliverydate);
+                ref.child(firebase_name).child(Merchandising.month1).child(Merchandising.day_date).child("Merchandising").child(""+Merchandising.date1).child(Merchandising.project_name).child("Order Placement").setValue(pojo);
+                Toast.makeText(Orderplacement.this,"Saving Order Placement",Toast.LENGTH_LONG).show();
             }
         });
 

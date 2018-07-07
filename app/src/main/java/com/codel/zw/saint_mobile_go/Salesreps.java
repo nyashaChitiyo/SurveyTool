@@ -108,7 +108,8 @@ public class Salesreps extends AppCompatActivity
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference ref = database.getReference("Brand Ambassador");
 
-                                ref.child(firebase_username[0]).child("Sales and Distribution").child(Sales.projectName).child(str_orderBrand).setValue(pojo);
+                                ref.child(firebase_username[0]).child(Sales.month1).child(Sales.day_date).child("Sales and Distribution").child(""+Sales.date1).child(Sales.projectName).child("Price Lists").setValue(pojo);
+                                Toast.makeText(Salesreps.this,"Saved price list",Toast.LENGTH_LONG).show();
                             }
                         }
                     });
@@ -123,15 +124,17 @@ public class Salesreps extends AppCompatActivity
         Toast.makeText(this,str_orderNumber,Toast.LENGTH_LONG).show();
         if (firebase_name != null) {
             firebase_name = user.getDisplayName();
+            Toast.makeText(this,"Order Generation",Toast.LENGTH_LONG).show();
             SalesOrderPojo pojo = new SalesOrderPojo(str_orderNumber,str_date,str_orderPackSize,str_orderQty);
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference ref = database.getReference("Brand Ambassador");
-            ref.child(firebase_name).child("Sales and Distribution").child(Sales.projectName).child(str_orderNumber).setValue(pojo);
-            Toast.makeText(this,"Saved price list",Toast.LENGTH_LONG).show();
+            ref.child(firebase_name).child(Sales.month1).child(Sales.day_date).child("Sales and Distribution").child(""+Sales.date1).child(Sales.projectName).child("Order Generation").setValue(pojo);
+
         }
 
         else {
             String s = user.getEmail();
+            Toast.makeText(Salesreps.this,"Saving Order generatio",Toast.LENGTH_LONG).show();
             final String[] firebase_username = s.split("@");
             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                     .setDisplayName(firebase_username[0])
@@ -145,7 +148,8 @@ public class Salesreps extends AppCompatActivity
                                 SalesOrderPojo pojo = new SalesOrderPojo(str_orderNumber,str_date,str_orderPackSize,str_orderQty);
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference ref = database.getReference("Brand Ambassador");
-                                ref.child(firebase_username[0]).child("Sales and Distribution").child(Sales.projectName).child(str_orderNumber).setValue(pojo);
+                                ref.child(firebase_username[0]).child(Sales.month1).child(Sales.day_date).child("Sales and Distribution").child(""+Sales.date1).child(Sales.projectName).child("Order Generation").setValue(pojo);
+
                             }
                         }
                     });
@@ -158,12 +162,12 @@ public class Salesreps extends AppCompatActivity
         str_price = price.getText().toString();
         str_quantity = quantity.getText().toString();
         if (firebase_name != null) {
+            Toast.makeText(this,"Saved price list",Toast.LENGTH_LONG).show();
             firebase_name = user.getDisplayName();
             SalesrepsPojo pojo = new SalesrepsPojo(str_brand,str_packsize,str_quantity,str_price);
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference ref = database.getReference("Brand Ambassador");
-            ref.child(firebase_name).child("Sales and Distribution").child(Sales.projectName).child(str_brand).setValue(pojo);
-            Toast.makeText(this,"Saved price list",Toast.LENGTH_LONG).show();
+            ref.child(firebase_name).child(Sales.month1).child(Sales.day_date).child("Sales and Distribution").child(""+Sales.date1).child(Sales.projectName).child("Order Taking").setValue(pojo);
         }
 
         else {
@@ -180,10 +184,10 @@ public class Salesreps extends AppCompatActivity
                             if (task.isSuccessful()) {
 
                                 SalesrepsPojo pojo = new SalesrepsPojo(str_brand,str_packsize,str_quantity,str_price);
-
+                                Toast.makeText(Salesreps.this,"Saving Order Taking",Toast.LENGTH_LONG).show();
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference ref = database.getReference("Brand Ambassador");
-                                ref.child(firebase_username[0]).child("Sales and Distribution").child(Sales.projectName).child(str_brand).setValue(pojo);
+                                ref.child(firebase_username[0]).child(Sales.month1).child(Sales.day_date).child("Sales and Distribution").child(""+Sales.date1).child(Sales.projectName).child("Order Taking").setValue(pojo);
                             }
                         }
                     });

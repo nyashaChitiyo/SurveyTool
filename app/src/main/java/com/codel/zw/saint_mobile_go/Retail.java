@@ -33,12 +33,22 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static android.os.Build.VERSION_CODES.O;
 
 public class Retail extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     static String projectName,stfullname;
     String firebase_name;
+    static Date date1;
+    Date date;
+    SimpleDateFormat simpleDateformat;
+    SimpleDateFormat simpleDateformatYear;
+    static String month1;
+    String month;
+    static String day_date;
     EditText etprojectname,etfullname,etphonenumber,etemailentry,etclient,etba,etwbrand,etwpacksize,etwquantitycounted,
             etwbreakages_brand,etwquantity_breakages,etbrand,etpacksize,etquantitycounted,etbreakages_brand,
             etquantity_breakages,etcbrand,etcpacksize,etcquantitycounted,etsales,etcswarehouse,etshelfpercentages,
@@ -56,6 +66,18 @@ public class Retail extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retail);
+
+        date = new Date();
+        date1 = date;
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        //simpleDateformatYear = new SimpleDateFormat("YYYY");
+        simpleDateformat = new SimpleDateFormat("MMMMyyyy");
+        simpleDateformatYear = new SimpleDateFormat("ddMMMMyyyy");
+        month = simpleDateformat.format(date);
+        day_date = simpleDateformatYear.format(date);
+        month1 =  month;
+
+
         picbtn = (Button)findViewById(R.id.picbtn);
         user = FirebaseAuth.getInstance().getCurrentUser();
         planogrambtn = (Button)findViewById(R.id.planogrambtn);
@@ -286,7 +308,7 @@ public class Retail extends AppCompatActivity
             //Get online user
 
             //firebase_name = user.getDisplayName();
-            ref.child(firebase_name).child("Retail").child(str_etprojectname).setValue(retailPojo);
+            ref.child(firebase_name).child(month).child(day_date).child("Retail").child(""+date).child(str_etprojectname).child(str_etfullname).setValue(retailPojo);
         }
 
         else {
@@ -310,7 +332,7 @@ public class Retail extends AppCompatActivity
                                 //Get online user
 
                                 firebase_name = user.getDisplayName();
-                                ref.child(firebase_name).child("Retail").child(str_etprojectname).child(str_etfullname).setValue(retailPojo);
+                                ref.child(firebase_name).child(month).child(day_date).child("Retail").child(""+date).child(str_etprojectname).child(str_etfullname).setValue(retailPojo);
                                 //Toast.makeText(Retail.this,"name :"+firebase_name+" project name :"+str_etprojectname,Toast.LENGTH_LONG).show();
                             }
                         }

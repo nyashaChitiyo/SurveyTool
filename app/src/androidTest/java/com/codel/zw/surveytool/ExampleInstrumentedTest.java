@@ -9,7 +9,10 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
-/**
+/** how can i test integers and variables at the same time
+ * how to test withn mockito and j unit testing
+ * save me the drama bby
+ *
  * Instrumented test, which will execute on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>

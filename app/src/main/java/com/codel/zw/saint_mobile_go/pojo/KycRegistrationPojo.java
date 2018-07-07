@@ -23,12 +23,11 @@ public class KycRegistrationPojo {
     String fvisitedmalls;
     String leisuretime;
     String numberofchildren;
-    String males;
-    String females;
     String childreninhouse;
     String childrenunder18;
     String rentcost;
     String utilities;
+    String gender;
     String foodgrocery;
     String educationcost;
     String transport;
@@ -44,8 +43,17 @@ public class KycRegistrationPojo {
     String householdownership;
     String agent;
 
-    public KycRegistrationPojo(String firstname, String lastname, String dob, String personalphone, String homephone, String workphone, String email, String facebook, String twitter, String whatsapp, String instagram, String homeaddress, String workaddress, String idnumber, String passport, String driverlicense, String nationality, String hobies, String fhobies, String fvisitedmalls, String leisuretime, String numberofchildren, String males, String females, String childreninhouse, String childrenunder18, String rentcost, String utilities, String foodgrocery, String educationcost, String transport, String savings, String houses, String furniture, String vehicle, String land, String religion, String employmentstatus, String geoclass, String edulevel, String householdownership,String agent) {
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public KycRegistrationPojo(String firstname, String lastname, String dob, String gender, String personalphone, String homephone, String workphone, String email, String facebook, String twitter, String whatsapp, String instagram, String homeaddress, String workaddress, String idnumber, String passport, String driverlicense, String nationality, String hobies, String fhobies, String fvisitedmalls, String leisuretime, String numberofchildren, String childreninhouse, String childrenunder18, String rentcost, String utilities, String foodgrocery, String educationcost, String transport, String savings, String houses, String furniture, String vehicle, String land, String religion, String employmentstatus, String geoclass, String edulevel, String householdownership, String agent) {
         this.firstname = firstname;
+        this.gender = gender;
         this.lastname = lastname;
         this.dob = dob;
         this.personalphone = personalphone;
@@ -67,8 +75,6 @@ public class KycRegistrationPojo {
         this.fvisitedmalls = fvisitedmalls;
         this.leisuretime = leisuretime;
         this.numberofchildren = numberofchildren;
-        this.males = males;
-        this.females = females;
         this.childreninhouse = childreninhouse;
         this.childrenunder18 = childrenunder18;
         this.rentcost = rentcost;
@@ -271,22 +277,6 @@ public class KycRegistrationPojo {
 
     public void setNumberofchildren(String numberofchildren) {
         this.numberofchildren = numberofchildren;
-    }
-
-    public String getMales() {
-        return males;
-    }
-
-    public void setMales(String males) {
-        this.males = males;
-    }
-
-    public String getFemales() {
-        return females;
-    }
-
-    public void setFemales(String females) {
-        this.females = females;
     }
 
     public String getChildreninhouse() {

@@ -11,7 +11,7 @@ import android.widget.Button;
 
 public class MobileGo extends AppCompatActivity {
 
-    Button kycbtn;
+    Button kycbtn,instorebtn,trademarketingbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,16 @@ public class MobileGo extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         kycbtn = (Button)findViewById(R.id.kycbtn);
+        instorebtn = findViewById(R.id.instorebtn);
+        trademarketingbtn = findViewById(R.id.trademarketingbtn);
 
+        instorebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent merch = new Intent(getApplicationContext(),MarketSurvey.class);
+                startActivity(merch);
+            }
+        });
         kycbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,7 +38,13 @@ public class MobileGo extends AppCompatActivity {
                 startActivity(kyc);
             }
         });
-
+        trademarketingbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent usage = new Intent(getApplicationContext(),UsageAndAttitudes.class);
+                startActivity(usage);
+            }
+        });
     }
 
 }

@@ -2,8 +2,10 @@ package com.codel.zw.saint_mobile_go;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -16,8 +18,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.codel.zw.saint_mobile_go.pojo.OnShelfPojo;
+import com.codel.zw.saint_mobile_go.pojo.OrderPlacementPojo;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import static android.os.Build.VERSION_CODES.N;
 import static android.os.Build.VERSION_CODES.O;
@@ -26,15 +43,27 @@ public class Onshelf extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     Button picbtn, planogrambtn, onshelfbtn;
-    ImageView shelfimage, planogrampic;
+    EditText Shelf_Share_Percentages,Competitor_SKU_Selling_Price,Own_SKU_Selling_Price,Competitor_POSM,Own_POSM,Competitor_Specials;
 
+    private StorageReference mstorage;
+    ImageView shelfimage, planogrampic;
+    private FirebaseUser user;
+    private String firebase_name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onshelf);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        mstorage = FirebaseStorage.getInstance().getReference();
         setSupportActionBar(toolbar);
+        Shelf_Share_Percentages = findViewById(R.id.shelfpercentages);
+        Competitor_SKU_Selling_Price = findViewById(R.id.competitorprice);
+        Own_SKU_Selling_Price = findViewById(R.id.ownskuprice);
+        Competitor_POSM = findViewById(R.id.competitorposm);
+        Own_POSM = findViewById(R.id.ownposm);
+        Competitor_Specials = findViewById(R.id.competitorspecials);
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
         picbtn = (Button)findViewById(R.id.picbtn);
         planogrambtn = (Button)findViewById(R.id.planogrambtn);
         shelfimage = (ImageView)findViewById(R.id.shelfimage);
@@ -46,6 +75,20 @@ public class Onshelf extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(),"Saving data...", Toast.LENGTH_LONG).show();
+                String txtShelfShare = Shelf_Share_Percentages.getText().toString();
+                String txtCompSKUprice = Competitor_SKU_Selling_Price.getText().toString();
+                String txtOwnSku = Own_SKU_Selling_Price.getText().toString();
+                String txtCompPosm = Competitor_POSM.getText().toString();
+                String txtOwnPosm = Own_POSM.getText().toString();
+                String txtCompSpecial = Competitor_Specials.getText().toString();
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference ref = database.getReference("Brand Ambassador");
+                firebase_name = user.getDisplayName();
+
+                OnShelfPojo pojo = new OnShelfPojo(txtShelfShare,txtCompSKUprice,txtOwnSku,txtCompPosm,txtOwnPosm,txtCompSpecial);
+                ref.child(firebase_name).child(Merchandising.month1).child(Merchandising.day_date).child("Merchandising").child(""+Merchandising.date1).child(Merchandising.project_name).child("On Shelf Statistics").setValue(pojo);
+                Toast.makeText(Onshelf.this,"Saved OnShelf",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -53,7 +96,7 @@ public class Onshelf extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent btnpic = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(btnpic,O);
+                startActivityForResult(btnpic,1);
             }
         });
 
@@ -61,7 +104,7 @@ public class Onshelf extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent btnplanogram = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(btnplanogram,N);
+                startActivityForResult(btnplanogram,2);
             }
         });
 
@@ -75,20 +118,67 @@ public class Onshelf extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(final int requestCode,final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Bitmap bitmap = (Bitmap)data.getExtras().get("data");
-        shelfimage.setImageBitmap(bitmap);
+        String s = user.getEmail();
+        final String[] firebase_username = s.split("@");
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(firebase_username[0])
+                .build();
 
-        super.onActivityResult(requestCode, resultCode, data);
-        Bitmap bitmap1 = (Bitmap)data.getExtras().get("data");
-        planogrampic.setImageBitmap(bitmap1);
+        user.updateProfile(profileUpdates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            if(requestCode==1 && resultCode==RESULT_OK){
+                                Uri uri = data.getData();
+                                StorageReference filepath = mstorage.child("photos").child("Brand Ambassador").child(firebase_username[0]).child("Merchandising").child("OnShelf").child("Picture Of Shelf").child(Merchandising.userName);
+                                filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        Toast.makeText(Onshelf.this,"Uploading Successful....",Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                            else if(requestCode==2 && resultCode==RESULT_OK){
+                                Uri uri = data.getData();
+                                StorageReference filepath = mstorage.child("photos").child("Brand Ambassador").child(firebase_username[0]).child("Merchandising").child("OnShelf").child("Attach Planogram").child(Merchandising.userName);
+                                filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        Toast.makeText(Onshelf.this,"Uploading Successful....",Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                        }
+                        else
+                        {
+                            if(requestCode==1 && resultCode==RESULT_OK){
+                                Uri uri = data.getData();
+                                StorageReference filepath = mstorage.child("photos").child("Brand Ambassador").child(firebase_username[0]).child("Merchandising").child("OnShelf").child("Picture Of Shelf").child(Merchandising.userName);
+                                filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        Toast.makeText(Onshelf.this,"Uploading Successful....",Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                            else if(requestCode==2 && resultCode==RESULT_OK){
+                                Uri uri = data.getData();
+                                StorageReference filepath = mstorage.child("photos").child("Brand Ambassador").child(firebase_username[0]).child("Merchandising").child("OnShelf").child("Attach Planogram").child(Merchandising.userName);
+                                filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        Toast.makeText(Onshelf.this,"Uploading Successful....",Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
     }
-
-
-
 
     @Override
     public void onBackPressed() {
@@ -129,7 +219,7 @@ public class Onshelf extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.home) {
-            // Handle the camera action
+
         } else if (id == R.id.options) {
 
         } else if (id == R.id.settings) {

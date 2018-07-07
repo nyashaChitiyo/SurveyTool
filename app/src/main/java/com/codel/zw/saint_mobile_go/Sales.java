@@ -35,10 +35,20 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Sales extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    static String projectName,stfname;
+    static Date date1;
+    Date date;
+    SimpleDateFormat simpleDateformat;
+    SimpleDateFormat simpleDateformatYear;
+    static String month1;
+    String month;
+    static String day_date;
+    static String projectName;
     private FirebaseUser user;
     EditText firstName,lastName,dob,personalNumber,homeNumber,workNumber,email,workAddress,idNumber;
     String firebase_name;
@@ -86,6 +96,14 @@ public class Sales extends AppCompatActivity
         user = FirebaseAuth.getInstance().getCurrentUser();
         firebase_name = user.getDisplayName();
 
+        date = new Date();
+        date1 = date;
+        simpleDateformat = new SimpleDateFormat("MMMMyyyy");
+        simpleDateformatYear = new SimpleDateFormat("ddMMMMyyyy");
+        month = simpleDateformat.format(date);
+        day_date = simpleDateformatYear.format(date);
+        month1 =  month;
+
         firstName = (EditText)findViewById(R.id.firstname);
         lastName = (EditText)findViewById(R.id.lastname);
         dob = (EditText)findViewById(R.id.dob);
@@ -123,7 +141,7 @@ public class Sales extends AppCompatActivity
                     SalesPojo salesPojo = new SalesPojo(str_fname,str_lastName,str_dob,str_male,str_personalNumber,str_homeNumber,str_workNUmber,str_email,str_workAddress,str_idNumber);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference ref = database.getReference("Brand Ambassador");
-                    ref.child(firebase_name).child("Sales and Distribution").child(str_fname).setValue(salesPojo);
+                    ref.child(firebase_name).child(month).child(day_date).child("Sales and Distribution").child(""+date).child(str_fname).setValue(salesPojo);
                     Intent nextsales = new Intent(getApplicationContext(), Salesreps.class);
                     startActivity(nextsales);
                     Toast.makeText(Sales.this,"Sales Saved",Toast.LENGTH_LONG).show();
@@ -143,7 +161,7 @@ public class Sales extends AppCompatActivity
                                         SalesPojo salesPojo = new SalesPojo(str_fname,str_lastName,str_dob,str_male,str_personalNumber,str_homeNumber,str_workNUmber,str_email,str_workAddress,str_idNumber);
                                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                                         DatabaseReference ref = database.getReference("Brand Ambassador");
-                                        ref.child(firebase_name).child("Sales and Distribution").child(str_fname).setValue(salesPojo);
+                                        ref.child(firebase_name).child(month).child(day_date).child("Sales and Distribution").child(""+date).child(str_fname).setValue(salesPojo);
                                         Intent nextsales = new Intent(getApplicationContext(), Salesreps.class);
                                         startActivity(nextsales);
                                         Toast.makeText(Sales.this,"Sales Saved",Toast.LENGTH_LONG).show();
@@ -151,7 +169,6 @@ public class Sales extends AppCompatActivity
                                 }
                             });
                 }
-
             }
         });
 

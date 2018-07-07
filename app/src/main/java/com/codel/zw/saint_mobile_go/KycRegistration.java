@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 import com.codel.zw.saint_mobile_go.pojo.KycRegistrationPojo;
@@ -39,6 +40,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -46,16 +50,22 @@ import static android.os.Build.VERSION_CODES.O;
 
 public class KycRegistration extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-
+    static Date date1;
+    Date date;
+    SimpleDateFormat simpleDateformat;
+    SimpleDateFormat simpleDateformatYear;
+    static String month1;
+    String month;
+    static String day_date;
     private static final String TAG = "KycRegistration";
     String firebase_name;
+    String gender;
     static String qname;
     Button kycpicbtn, kycnxtbtn;
     ImageView kycpic;
     EditText firstname, lastname, dob, personalphone, homephone, workphone, email, facebook,
             twitter, whatsapp, instagram, homeaddress, workaddress, idnumber, passport, driverlicense,
-            nationality, hobies, fhobies, fvisitedmalls, leisuretime, numberofchildren, males, females,
+            nationality, hobies, fhobies, fvisitedmalls, leisuretime, numberofchildren,
             childreninhouse, childrenunder18, rentcost, utilities, foodgrocery, educationcost, transport,
             savings, houses, furniture, vehicle, land;
     private StorageReference mstorage;
@@ -74,9 +84,16 @@ public class KycRegistration extends AppCompatActivity
         firebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        date = new Date();
+        date1 = date;
         user = FirebaseAuth.getInstance().getCurrentUser();
-
+        //simpleDateformatYear = new SimpleDateFormat("YYYY");
+        simpleDateformat = new SimpleDateFormat("MMMMyyyy");
+        simpleDateformatYear = new SimpleDateFormat("ddMMMMyyyy");
+        month = simpleDateformat.format(date);
+        day_date = simpleDateformatYear.format(date);
+        month1 =  month;
+        //year = simpleDateformatYear.format(date);
         kycpicbtn = (Button)findViewById(R.id.kycpicbtn);
         kycnxtbtn = (Button)findViewById(R.id.kycnxtbtn);
         kycpic = (ImageView)findViewById(R.id.kycpic);
@@ -109,8 +126,6 @@ public class KycRegistration extends AppCompatActivity
         fvisitedmalls = (EditText)findViewById(R.id.etfvisitedmalls);
         leisuretime = (EditText)findViewById(R.id.etleisuretime);
         numberofchildren = (EditText)findViewById(R.id.etnumberofchildren);
-        males = (EditText)findViewById(R.id.etmales);
-        females = (EditText)findViewById(R.id.etfemales);
         childreninhouse = (EditText)findViewById(R.id.etchildreninhouse);
         childrenunder18 = (EditText)findViewById(R.id.etchildrenunder18);
         rentcost = (EditText)findViewById(R.id.etrentcost);
@@ -205,18 +220,31 @@ public class KycRegistration extends AppCompatActivity
         });
 
 
-
-
-
-        //Navigation Drawer
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    public void onRadioBtnClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.male:
+                if (checked)
+                    gender = "Male";
+                break;
+            case R.id.female:
+                if (checked)
+                    gender = "Female";
+                break;
+        }
     }
 
     //onclick *savekyc* button
@@ -246,8 +274,6 @@ public class KycRegistration extends AppCompatActivity
         final String str_fvisitedmalls = fvisitedmalls.getText().toString();
         final String str_leisuretime = leisuretime.getText().toString();
         final String str_numberofchildren = numberofchildren.getText().toString();
-        final String str_males = males.getText().toString();
-        final String str_females = females.getText().toString();
         final String str_childreninhouse = childreninhouse.getText().toString();
         final String str_childrenunder18 = childrenunder18.getText().toString();
         final String str_rentcost = rentcost.getText().toString();
@@ -274,21 +300,17 @@ public class KycRegistration extends AppCompatActivity
             if (firebase_name != null) {
                 // Name, email address, and profile photo Url
                 firebase_name = user.getDisplayName();
-                KycRegistrationPojo pojo = new KycRegistrationPojo(str_firstname, str_lastname, str_dob, str_personalphone, str_homephone,
+                KycRegistrationPojo pojo = new KycRegistrationPojo(str_firstname, str_lastname, str_dob,gender, str_personalphone, str_homephone,
                         str_workphone, str_email, str_facebook, str_twitter, str_whatsapp,
                         str_instagram, str_homeaddress, str_workaddress, str_idnumber, str_passport, str_driverlicense,
                         str_nationality, str_hobies, str_fhobies, str_fvisitedmalls,
-                        str_leisuretime, str_numberofchildren, str_males, str_females, str_childreninhouse,
+                        str_leisuretime, str_numberofchildren, str_childreninhouse,
                         str_childrenunder18, str_rentcost, str_utilities, str_foodgrocery, str_educationcost,
                         str_transport, str_savings, str_houses, str_vehicle, str_furniture, str_land, str_religion, str_employmentstatus, str_geoclass, str_edulevel, str_householdownership, email);
 
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference ref = database.getReference("Brand Ambassador");
-
-                //Get online user
-
-                //firebase_name = user.getDisplayName();
-                ref.child(firebase_name).child("Know Your Customer").child(str_firstname+" "+str_lastname).setValue(pojo);
+                ref.child(firebase_name).child(month).child(day_date).child("Know Your Customer").child(""+date).child(str_firstname+" "+str_lastname).setValue(pojo);
             }
 
             else {
@@ -304,11 +326,11 @@ public class KycRegistration extends AppCompatActivity
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
 
-                                    KycRegistrationPojo pojo = new KycRegistrationPojo(str_firstname, str_lastname, str_dob, str_personalphone, str_homephone,
+                                    KycRegistrationPojo pojo = new KycRegistrationPojo(str_firstname, str_lastname, str_dob,gender, str_personalphone, str_homephone,
                                             str_workphone, str_email, str_facebook, str_twitter, str_whatsapp,
                                             str_instagram, str_homeaddress, str_workaddress, str_idnumber, str_passport, str_driverlicense,
                                             str_nationality, str_hobies, str_fhobies, str_fvisitedmalls,
-                                            str_leisuretime, str_numberofchildren, str_males, str_females, str_childreninhouse,
+                                            str_leisuretime, str_numberofchildren, str_childreninhouse,
                                             str_childrenunder18, str_rentcost, str_utilities, str_foodgrocery, str_educationcost,
                                             str_transport, str_savings, str_houses, str_vehicle, str_furniture, str_land, str_religion, str_employmentstatus, str_geoclass, str_edulevel, str_householdownership, email);
 
@@ -317,7 +339,7 @@ public class KycRegistration extends AppCompatActivity
 
                                     //Get online user
                                     //firebase_name = user.getDisplayName();
-                                    ref.child(firebase_username[0]).child("Know Your Customer").child(str_firstname+" "+str_lastname).setValue(pojo);
+                                   ref.child(firebase_username[0]).child(month).child(day_date).child("Know Your Customer").child(""+date).child(str_firstname+" "+str_lastname).setValue(pojo);
                                 }
                             }
                         });
@@ -343,7 +365,7 @@ public class KycRegistration extends AppCompatActivity
                             if (task.isSuccessful()) {
                   if(requestCode==1 && resultCode==RESULT_OK){
                          Uri uri = data.getData();
-                         StorageReference filepath = mstorage.child("photos").child("Brand Ambassador").child(firebase_username[0]).child("Know Your Customer").child(str_firstname+" "+str_lastname);
+                         StorageReference filepath = mstorage.child("photos").child("Brand Ambassador").child(firebase_username[0]).child(month).child("Know Your Customer").child(str_firstname+" "+str_lastname);
                      filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

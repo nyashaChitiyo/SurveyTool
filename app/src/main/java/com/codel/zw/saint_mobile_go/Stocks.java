@@ -91,7 +91,7 @@ public class Stocks extends AppCompatActivity
 
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference ref = database.getReference("Brand Ambassador");
-            ref.child(firebase_name).child("Merchandising").child(Merchandising.project_name).child("Warehouse Opening stock").setValue(warehouseStock);
+            ref.child(firebase_name).child(Merchandising.month1).child(Merchandising.day_date).child("Merchandising").child(""+Merchandising.date1).child(Merchandising.project_name).child("Stocks").child("Warehouse Opening stock").setValue(warehouseStock);
         }
 
         else {
@@ -111,7 +111,7 @@ public class Stocks extends AppCompatActivity
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("Brand Ambassador");
-        ref.child(firebase_username[0]).child("Merchandising").child(Merchandising.project_name).child("Warehouse Opening stock").setValue(warehouseStock);
+        ref.child(firebase_username[0]).child(Merchandising.month1).child(Merchandising.day_date).child("Merchandising").child(""+Merchandising.date1).child(Merchandising.project_name).child("Stocks").child("Warehouse Opening stock").setValue(warehouseStock);
 
         Toast.makeText(getApplicationContext(), "Saving warehouse stocks ...", Toast.LENGTH_LONG).show();
                             }
@@ -142,7 +142,7 @@ public class Stocks extends AppCompatActivity
             ShopFloorStock shopFloorStock = new ShopFloorStock(str_et_brand,str_et_packsize,str_et_quantitycounted,str_et_breakages_brand,str_et_quantity_breakages);
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference ref = database.getReference("Brand Ambassador");
-            ref.child(firebase_name).child("Merchandising").child(Merchandising.project_name).child("Shop Floor Opening Stock").setValue(shopFloorStock);
+            ref.child(firebase_name).child(Merchandising.month1).child(Merchandising.day_date).child("Merchandising").child(""+Merchandising.date1).child(Merchandising.project_name).child("Stocks").child("Shop Floor Opening Stock").setValue(shopFloorStock);
         }
 
         else {
@@ -160,7 +160,7 @@ public class Stocks extends AppCompatActivity
         ShopFloorStock shopFloorStock = new ShopFloorStock(str_et_brand,str_et_packsize,str_et_quantitycounted,str_et_breakages_brand,str_et_quantity_breakages);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("Brand Ambassador");
-        ref.child(firebase_username[0]).child("Merchandising").child(Merchandising.project_name).child("Shop Floor Opening Stock").setValue(shopFloorStock);
+        ref.child(firebase_username[0]).child(Merchandising.month1).child(Merchandising.day_date).child("Merchandising").child(""+Merchandising.date1).child(Merchandising.project_name).child("Stocks").child("Shop Floor Opening Stock").setValue(shopFloorStock);
 
         Toast.makeText(getApplicationContext(), "Saving warehouse stocks ...", Toast.LENGTH_LONG).show();
                             }
@@ -175,8 +175,6 @@ public class Stocks extends AppCompatActivity
         final String str_et_cbrand = et_cbrand.getText().toString();
         final String str_et_cpacksize = et_cpacksize.getText().toString();
         final String str_et_cquantitycounted = et_cquantitycounted.getText().toString();
-        final String str_et_sales = et_sales.getText().toString();
-        final String str_et_cswarehouse = et_cswarehouse.getText().toString();
 
         String type = "closingStock";
 
@@ -186,7 +184,7 @@ public class Stocks extends AppCompatActivity
             ShopFloorClosingStock closingStock = new ShopFloorClosingStock(str_et_cbrand,str_et_cpacksize,str_et_cquantitycounted);
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference ref = database.getReference("Brand Ambassador");
-            ref.child(firebase_name).child("Merchandising").child(Merchandising.project_name).child("Shop Floor Closing Stock").setValue(closingStock);
+            ref.child(firebase_name).child(Merchandising.month1).child(Merchandising.day_date).child("Merchandising").child(""+Merchandising.date1).child(Merchandising.project_name).child("Stocks").child("Shop Floor Closing Stock").setValue(closingStock);
         }
         else
         {
@@ -204,7 +202,7 @@ public class Stocks extends AppCompatActivity
                                 ShopFloorClosingStock closingStock = new ShopFloorClosingStock(str_et_cbrand,str_et_cpacksize,str_et_cquantitycounted);
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference ref = database.getReference("Brand Ambassador");
-                                ref.child(firebase_username[0]).child("Merchandising").child(Merchandising.project_name).child("Shop Floor Closing Stock").setValue(closingStock);
+                                ref.child(firebase_username[0]).child(Merchandising.month1).child(Merchandising.day_date).child("Merchandising").child(""+Merchandising.date1).child(Merchandising.project_name).child("Stocks").child("Shop Floor Closing Stock").setValue(closingStock);
 
                                 Toast.makeText(getApplicationContext(), "Last Tab Saving warehouse stocks ...", Toast.LENGTH_LONG).show();
                             }
@@ -267,7 +265,6 @@ public class Stocks extends AppCompatActivity
         } else if (id == R.id.account) {
 
         } else if (id == R.id.logout) {
-
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

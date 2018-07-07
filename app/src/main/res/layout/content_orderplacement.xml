@@ -8,8 +8,9 @@
     tools:context="com.codel.zw.surveytool.com.example.gifty.zw.Orderplacement"
     tools:showIn="@layout/app_bar_orderplacement">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="wrap_content">
 
         <TextView
@@ -31,24 +32,6 @@
             android:inputType="text" />
 
         <TextView
-            android:id="@+id/orderdate1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/ordernumber"
-            android:layout_marginLeft="16dp"
-            android:text="Date:" />
-
-        <EditText
-            android:id="@+id/orderdate"
-            android:layout_width="match_parent"
-            android:layout_below="@+id/orderdate1"
-            android:layout_height="match_parent"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
-            android:ems="10"
-            android:inputType="datetime" />
-
-        <TextView
             android:id="@+id/wpacksize1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,7 +48,6 @@
             android:layout_marginLeft="16dp"
             android:ems="10"
             android:inputType="text" />
-
         <TextView
             android:id="@+id/wquantity"
             android:layout_width="wrap_content"
@@ -73,7 +55,6 @@
             android:layout_below="@+id/orderdate"
             android:layout_marginLeft="140dp"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/wpacksize1"
             android:text="Quantity:" />
 
         <EditText
@@ -82,60 +63,44 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/wquantity"
             android:layout_marginLeft="140dp"
-            android:layout_toRightOf="@+id/wpacksize1"
             android:ems="10"
             android:inputType="numberDecimal" />
 
         <TextView
-            android:id="@+id/scan"
+            android:id="@+id/orderdate1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/wpacksize"
+            android:layout_below="@+id/ordernumber"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
-            android:textSize="18dp"
-            android:text="Scan Barcode" />
-
-        <Button
-            android:id="@+id/scanbtn"
-            android:layout_below="@+id/scan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="36dp"
-            android:layout_toLeftOf="@+id/barcodescan"
-            android:background="#ff8c00"
-            android:layout_marginTop="10dp"
-            android:textColor="#322a29"
-            android:text="SCAN" />
-
-        <ImageView
-            android:id="@+id/barcodescan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/scan"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-             />
-
-        <TextView
-            android:id="@+id/typecode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/barcodescan"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
-            android:text="Enter Barcode:" />
+            android:text="Order Date:" />
 
         <EditText
-            android:id="@+id/codenumber"
+            android:id="@+id/orderdate"
             android:layout_width="match_parent"
-            android:layout_below="@+id/typecode"
+            android:layout_below="@+id/orderdate1"
             android:layout_height="match_parent"
             android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="datetime" />
+
+        <TextView
+            android:id="@+id/orderdeliverydate1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ordernumber"
+            android:layout_marginLeft="16dp"
+            android:text="Order Delivery Date:" />
+
+        <EditText
+            android:id="@+id/orderdeliverydate"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/orderdate1"
+            android:layout_height="match_parent"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:ems="10"
+            android:inputType="datetime" />
 
         <Button
             android:id="@+id/orderbtn"
@@ -150,5 +115,5 @@
             android:text="ORDER" />
 
 
-    </RelativeLayout>
+    </LinearLayout>
 </ScrollView>
