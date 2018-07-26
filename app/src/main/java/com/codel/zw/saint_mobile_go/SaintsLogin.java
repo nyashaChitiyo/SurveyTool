@@ -98,7 +98,7 @@ public class SaintsLogin extends AppCompatActivity {
 
 
 
-        /*Toast.makeText(getApplicationContext(), "Loading...", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Loading...", Toast.LENGTH_LONG).show();
 
         String str_email = email.getText().toString();
         String str_password = password.getText().toString();
@@ -130,7 +130,7 @@ public class SaintsLogin extends AppCompatActivity {
                     }
                 });}
                 else
-                    Toast.makeText(this,"Please Enter email and Password",Toast.LENGTH_LONG).show();*/
+                    Toast.makeText(this,"Please Enter email and Password",Toast.LENGTH_LONG).show();
     }
 
     @Override
